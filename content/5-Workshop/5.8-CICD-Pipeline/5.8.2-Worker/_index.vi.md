@@ -8,7 +8,7 @@ pre : " <b> 5.8.2. </b> "
 
 ### CI/CD Pipeline cho Worker Server
 
-Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động cho **Worker Server** (thư mục ```hunglo```) lên môi trường Beanstalk ```ticket-app-Worker-env```.
+Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động cho **Worker Server** (thư mục ```ticket-booking-worker```) lên môi trường Beanstalk ```ticket-app-Worker-env```.
 
 ---
 
@@ -47,7 +47,7 @@ Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động c
      * **Deploy stage**: Deploy provider: **AWS Elastic Beanstalk** | Application: ```ticket-app-App``` | Environment: ```ticket-app-Worker-env``` -> click **Create pipeline**.
 
 4. **Push code Worker lên CodeCommit**:
-   * Mở Terminal tại thư mục Worker ```hunglo``` của bạn.
+   * Mở Terminal tại thư mục Worker ```ticket-booking-worker``` của bạn.
    * Khởi tạo Git và thực hiện push code:
      ```bash
      git init

@@ -8,7 +8,7 @@ pre : " <b> 5.8.2. </b> "
 
 ### CI/CD Pipeline for Worker Server
 
-We will set up an integration and deployment automation pipeline for the **Worker Server** (```hunglo``` folder) to deploy onto the Beanstalk ```ticket-app-Worker-env``` environment.
+We will set up an integration and deployment automation pipeline for the **Worker Server** (```ticket-booking-worker``` folder) to deploy onto the Beanstalk ```ticket-app-Worker-env``` environment.
 
 ---
 
@@ -47,7 +47,7 @@ We will set up an integration and deployment automation pipeline for the **Worke
      * **Deploy stage**: Deploy provider: **AWS Elastic Beanstalk** | Application: ```ticket-app-App``` | Environment: ```ticket-app-Worker-env``` -> click **Create pipeline**.
 
 4. **Push Worker code to CodeCommit**:
-   * Open a Terminal in your Worker directory ```hunglo```.
+   * Open a Terminal in your Worker directory ```ticket-booking-worker```.
    * Initialize Git and push:
      ```bash
      git init

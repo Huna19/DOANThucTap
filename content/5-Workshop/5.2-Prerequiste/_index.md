@@ -294,8 +294,8 @@ Ensure your workstation has the following tools installed and configured:
 
 The Ticket-App source code is structured into three main directories:
 1.  **ticket-booking-frontend/**: Static React UI showing event list and handling ticket purchases.
-2.  **Worldcup/** (Backend API): Node.js API (Express) validating requests, authenticating users via Cognito, and publishing events to SQS.
-3.  **hunglo/** (Worker): Background processor consuming messages from SQS FIFO and writing transactions to the PostgreSQL DB.
+2.  **ticket-booking-backend/** (Backend API): Node.js API (Express) validating requests, authenticating users via Cognito, and publishing events to SQS.
+3.  **ticket-booking-worker/** (Worker): Background processor consuming messages from SQS FIFO and writing transactions to the PostgreSQL DB.
 
 Clone the project from your workshop repository:
 ```bash

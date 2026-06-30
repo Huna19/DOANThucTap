@@ -294,8 +294,8 @@ Hãy đảm bảo máy trạm của bạn đã được cài đặt sẵn các c
 
 Mã nguồn của ứng dụng Ticket-App được chia làm 3 thư mục chính:
 1.  **ticket-booking-frontend/**: Giao diện React tĩnh hiển thị danh sách sự kiện và đặt vé.
-2.  **Worldcup/** (Backend API): Mã nguồn Node.js API (Express) xử lý tiếp nhận lượt booking, xác thực Cognito và đẩy tin nhắn vào SQS.
-3.  **hunglo/** (Worker): Mã nguồn chạy tác vụ ngầm tiêu thụ SQS để ghi nhận thông tin đặt vé vào PostgreSQL DB.
+2.  **ticket-booking-backend/** (Backend API): Mã nguồn Node.js API (Express) xử lý tiếp nhận lượt booking, xác thực Cognito và đẩy tin nhắn vào SQS.
+3.  **ticket-booking-worker/** (Worker): Mã nguồn chạy tác vụ ngầm tiêu thụ SQS để ghi nhận thông tin đặt vé vào PostgreSQL DB.
 
 Hãy clone dự án từ repository workshop của bạn:
 ```bash

@@ -8,7 +8,7 @@ pre : " <b> 5.8.1. </b> "
 
 ### CI/CD Pipeline for Backend API Server
 
-We will set up an integration and deployment automation pipeline for the **Backend API Server** (```Worldcup``` folder) to deploy onto the Beanstalk ```ticket-app-Backend-env``` environment.
+We will set up an integration and deployment automation pipeline for the **Backend API Server** (```ticket-booking-backend``` folder) to deploy onto the Beanstalk ```ticket-app-Backend-env``` environment.
 
 ---
 
@@ -26,7 +26,13 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials:
 #### 2. Configure CI/CD and Push Backend Code
 
 1. Open the [AWS CodeCommit console](https://us-east-1.console.aws.amazon.com/codesuite/codecommit/repositories?region=us-east-1) -> Click **Create repository**.
+
+![CodeCommit Repositories](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_repo_btn.png)
+
    * **Repository name**: Enter ```ticket-app-backend``` -> click **Create**.
+
+![Create CodeCommit Repository](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_repo_create.png)
+
 2. Open the [AWS CodeBuild console](https://us-east-1.console.aws.amazon.com/codesuite/codebuild/projects?region=us-east-1) -> Click **Create build project**:
    * **Project name**: ```ticket-app-backend-build```.
    * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-backend``` | Branch: ```main```.
@@ -56,7 +62,7 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials:
    * **Deploy stage**: Deploy provider: **AWS Elastic Beanstalk** | Application: ```ticket-app-App``` | Environment: ```ticket-app-Backend-env``` -> click **Next** -> **Create pipeline**.
 
 4. Push Backend code to CodeCommit:
-   * Open a Terminal in your Backend directory ```Worldcup```.
+   * Open a Terminal in your Backend directory ```ticket-booking-backend```.
    * Initialize Git and push:
      ```bash
      git init
@@ -68,7 +74,7 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials:
      ```
      * *Enter the Username and Password downloaded in step 1 when prompted.*
 
-![CodeCommit Repository Backend](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_backend.png)
+![Clone CodeCommit Repository](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_clone.png)
 
 ---
 

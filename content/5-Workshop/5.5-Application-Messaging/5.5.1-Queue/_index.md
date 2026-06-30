@@ -22,6 +22,7 @@ We need to create 2 FIFO queues: A main queue to receive booking events and a se
    * Leave default settings and click **Create queue** at the bottom.
 
 ![SQS Create Queue Button](/images/5-Workshop/5.5-Application-Messaging/sqs_create_btn.png)
+![SQS Create Type](/images/5-Workshop/5.5-Application-Messaging/sqs_create_type.png)
 ![SQS DLQ Name](/images/5-Workshop/5.5-Application-Messaging/sqs_dlq_name.png)
 
 4. Click **Create queue** again to create the main queue:
@@ -37,7 +38,10 @@ We need to create 2 FIFO queues: A main queue to receive booking events and a se
 
 ![SQS Queue Name](/images/5-Workshop/5.5-Application-Messaging/sqs_queue_name.png)
 ![SQS FIFO Settings](/images/5-Workshop/5.5-Application-Messaging/sqs_fifo_settings.png)
+![SQS Access Policy](/images/5-Workshop/5.5-Application-Messaging/sqs_access_policy.png)
 ![SQS DLQ Config](/images/5-Workshop/5.5-Application-Messaging/sqs_dlq_config.png)
-![SQS Create Bottom Button](/images/5-Workshop/5.5-Application-Messaging/sqs_create_bottom_btn.png)
+![SQS Create Bottom Button](/images/5-Workshop/5.5-Application-Messaging/sqs_create_btn_bottom.png)
 
 5. Click **Create queue**.
+
+![SQS Queue Details](/images/5-Workshop/5.5-Application-Messaging/sqs_queue_details.png)

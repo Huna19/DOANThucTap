@@ -31,7 +31,14 @@ In this section, we will set up 2 notification channels using **Amazon SNS** to 
 After creating the Subscription, the system will send a Confirmation Email to the email address you entered. You **must** check your inbox and click the **Confirm subscription** link to activate the notification channel. If not confirmed, the system will not be able to send notifications to this email.
 {{% /notice %}}
 
-![SNS Ops Topic](/images/5-Workshop/5.5-Application-Messaging/sns_ops_topic.png)
+![SNS Create Type](/images/5-Workshop/5.5-Application-Messaging/sns_create_type.png)
+![SNS Ops Create](/images/5-Workshop/5.5-Application-Messaging/sns_ops_create.png)
+![SNS Ops Details](/images/5-Workshop/5.5-Application-Messaging/sns_ops_details.png)
+![SNS Create Subscription](/images/5-Workshop/5.5-Application-Messaging/sns_create_subscription.png)
+![SNS Subscription Pending](/images/5-Workshop/5.5-Application-Messaging/sns_subscription_pending.png)
+![SNS Email Confirm](/images/5-Workshop/5.5-Application-Messaging/sns_email_confirm.png)
+![SNS Email Confirmed Page](/images/5-Workshop/5.5-Application-Messaging/sns_email_confirmed_page.png)
+![SNS Subscription Confirmed](/images/5-Workshop/5.5-Application-Messaging/sns_subscription_confirmed.png)
 
 ---
 
@@ -51,7 +58,9 @@ After creating the Subscription, the system will send a Confirmation Email to th
    * Click **Create subscription**.
 6. Check your email inbox and **confirm the subscription** as described above.
 
-![SNS User Topic](/images/5-Workshop/5.5-Application-Messaging/sns_user_topic.png)
+![SNS User Create](/images/5-Workshop/5.5-Application-Messaging/sns_user_create.png)
+![SNS User Details](/images/5-Workshop/5.5-Application-Messaging/sns_user_details.png)
+![SNS Dashboard](/images/5-Workshop/5.5-Application-Messaging/sns_dashboard.png)
 
 ---
 

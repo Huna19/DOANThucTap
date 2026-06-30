@@ -15,13 +15,22 @@ We will set up an integration and deployment automation pipeline for the **Worke
 #### 1. Configure CI/CD and Push Worker Code
 
 1. **Create CodeCommit Repository**:
-   * Open the CodeCommit console -> Click **Create repository** -> Name: ```ticket-app-worker``` -> click **Create**.
+   * Open CodeCommit -> Click **Create repository** -> Name: ```ticket-app-worker``` -> click **Create**.
+
+![CodeCommit Repository Worker](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_worker.png)
+
 2. **Create CodeBuild Project**:
-   * Open the CodeBuild console -> Click **Create build project**:
+   * Open CodeBuild -> Click **Create build project**:
      * **Project name**: ```ticket-app-worker-build```.
      * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-worker``` | Branch: ```main```.
-     * **Environment**: Operating system: **Amazon Linux** | Runtime: **Standard** | Image: Select latest version (`aws/codebuild/amazonlinux2-x86_64-standard:5.0`).
-     * **Buildspec**: Enter:
+
+![CodeBuild Worker Name](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_worker_name.png)
+
+     * **Environment**: Operating system: **Amazon Linux** | Runtime: **Standard** | Image: Select latest version (`aws/codebuild/amazonlinux-x86_64-standard:6.0`).
+
+![CodeBuild Worker Environment](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_worker_env.png)
+
+     * **Buildspec**: Enter buildspec details (CodeBuild packages all worker code to deploy onto Beanstalk):
        ```yaml
        version: 0.2
        phases:
@@ -38,15 +47,19 @@ We will set up an integration and deployment automation pipeline for the **Worke
          files:
            - '**/*'
        ```
+     * **Logs**: Select CloudWatch logs.
+
+![CodeBuild Worker Logs](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_worker_logs.png)
+
      * Click **Create build project**.
 3. **Create CodePipeline**:
-   * Open the CodePipeline console -> click **Create pipeline**:
+   * Open CodePipeline -> click **Create pipeline**:
      * **Pipeline name**: ```ticket-app-worker-pipeline```.
      * **Source stage**: Repository: ```ticket-app-worker``` | Branch: ```main```.
      * **Build stage**: Project name: ```ticket-app-worker-build```.
      * **Deploy stage**: Deploy provider: **AWS Elastic Beanstalk** | Application: ```ticket-app-App``` | Environment: ```ticket-app-Worker-env``` -> click **Create pipeline**.
 
-4. **Push Worker code to CodeCommit**:
+4. **Push Worker Code to CodeCommit**:
    * Open a Terminal in your Worker directory ```ticket-booking-worker```.
    * Initialize Git and push:
      ```bash
@@ -57,9 +70,7 @@ We will set up an integration and deployment automation pipeline for the **Worke
      git commit -m "Initial commit Worker Server"
      git push -u origin main
      ```
-     * *Enter your Git CodeCommit credentials when prompted.*
-
-![CodeCommit Repository Worker](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_worker.png)
+     * *Enter the Username and Password Git CodeCommit when prompted.*
 
 ---
 

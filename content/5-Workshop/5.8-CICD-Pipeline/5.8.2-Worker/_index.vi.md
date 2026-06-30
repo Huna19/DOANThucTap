@@ -16,11 +16,20 @@ Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động c
 
 1. **Tạo CodeCommit Repository**:
    * Mở CodeCommit -> Click **Create repository** -> Name: ```ticket-app-worker``` -> click **Create**.
+
+![CodeCommit Repository Worker](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_worker.png)
+
 2. **Tạo CodeBuild Project**:
    * Mở CodeBuild -> Click **Create build project**:
      * **Project name**: ```ticket-app-worker-build```.
      * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-worker``` | Branch: ```main```.
-     * **Environment**: Operating system: **Amazon Linux** | Runtime: **Standard** | Image: Chọn bản mới nhất (`aws/codebuild/amazonlinux2-x86_64-standard:5.0`).
+
+![CodeBuild Worker Name](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_worker_name.png)
+
+     * **Environment**: Operating system: **Amazon Linux** | Runtime: **Standard** | Image: Chọn bản mới nhất (`aws/codebuild/amazonlinux-x86_64-standard:6.0`).
+
+![CodeBuild Worker Environment](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_worker_env.png)
+
      * **Buildspec**: Nhập nội dung buildspec tương tự (CodeBuild sẽ đóng gói toàn bộ thư mục code worker để deploy lên Beanstalk):
        ```yaml
        version: 0.2
@@ -38,6 +47,10 @@ Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động c
          files:
            - '**/*'
        ```
+     * **Logs**: Chọn CloudWatch logs.
+
+![CodeBuild Worker Logs](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_worker_logs.png)
+
      * Click **Create build project**.
 3. **Tạo CodePipeline**:
    * Mở CodePipeline -> click **Create pipeline**:
@@ -58,8 +71,6 @@ Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động c
      git push -u origin main
      ```
      * *Nhập Username và Password Git CodeCommit khi hệ thống yêu cầu.*
-
-![CodeCommit Repository Worker](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_worker.png)
 
 ---
 

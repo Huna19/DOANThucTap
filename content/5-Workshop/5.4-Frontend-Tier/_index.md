@@ -48,7 +48,9 @@ In addition to the Frontend Bucket, the application needs a separate S3 Bucket t
      * **Uncheck** the **Block all public access** box (Allow public read access for images).
      * Check the acknowledgment box "I acknowledge that the current settings might result in this bucket and the objects within becoming public."
 
-![S3 Assets Bucket](/images/5-Workshop/5.4-Frontend-Tier/s3_assets_create.png)
+![S3 Assets Bucket Name](/images/5-Workshop/5.4-Frontend-Tier/s3_assets_create_name.png)
+![S3 Assets Ownership](/images/5-Workshop/5.4-Frontend-Tier/s3_assets_create_ownership.png)
+![S3 Assets Public Access](/images/5-Workshop/5.4-Frontend-Tier/s3_assets_create_public.png)
 
 3. Click **Create bucket** at the bottom of the page.
 4. After the bucket is created, go to the bucket details page → select the **Permissions** tab → scroll to **Cross-origin resource sharing (CORS)** → click **Edit** → paste the following CORS configuration:

@@ -56,17 +56,20 @@ Elastic Beanstalk cần một IAM Role (Instance Profile) để cấp quyền ch
    * **EC2 instance profile**: Chọn `ticket-app-beanstalk-ec2-role` vừa tạo ở Bước 1.
    * Click **Next**.
 
-![EB Service Access](/images/5-Workshop/5.5-Application-Messaging/eb_service_access.png)
+![EB Service Access](/images/5-Workshop/5.5-Application-Messaging/eb_service_access.jpg)
 8. Cấu hình **Networking**:
    * **VPC**: Chọn VPC ```ticket-app-vpc```.
    * **Instance subnets**: Tích chọn hai **Private Subnets** (chỉ cho phép EC2 chạy ẩn bên trong mạng private).
    * **Load balancer subnets**: Tích chọn hai **Public Subnets** (để Load Balancer có IP public tiếp nhận request).
    * Click **Next**.
+
+![EB Instance Subnets](/images/5-Workshop/5.5-Application-Messaging/eb_instance_subnets.jpg)
+![EB Load Balancer Subnets](/images/5-Workshop/5.5-Application-Messaging/eb_lb_subnets.jpg)
 9. Cấu hình **Instances**:
    * Tại mục **EC2 security groups**, tìm và chọn Security Group `ticket-app-ec2-worker-sg` (hoặc tên tương ứng đã tạo ở phần Network) để cho phép EC2 truy cập được RDS và Redis.
    * Click **Next**.
 
-![EB Instances SG](/images/5-Workshop/5.5-Application-Messaging/eb_instances_sg.png)
+![EB Security and Scaling](/images/5-Workshop/5.5-Application-Messaging/eb_security_scaling.jpg)
 10. Cấu hình **Capacity** (Auto Scaling):
    * **Environment type**: Chọn **Load balanced**.
    * **Instances**: t3.micro.

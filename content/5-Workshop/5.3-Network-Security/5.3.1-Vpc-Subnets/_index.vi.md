@@ -17,7 +17,7 @@ Trong phần này, chúng ta sẽ tiến hành cấu hình dải mạng ảo **A
 1. Mở [Amazon VPC console](https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Home:).
 2. Trên thanh điều hướng bên trái, chọn **Your VPCs**, click **Create VPC**:
 
-![Create VPC](/images/5-Workshop/5.3-Network-Security/vpc_home_btn.png)
+![Create VPC](/images/5-Workshop/5.3-Network-Security/vpc_create_btn.png)
 
 3. Trong giao diện cấu hình **Create VPC**:
    * Chọn **VPC only**.
@@ -25,8 +25,8 @@ Trong phần này, chúng ta sẽ tiến hành cấu hình dải mạng ảo **A
    * **IPv4 CIDR block**: Nhập ```10.0.0.0/16```.
    * Giữ nguyên các cấu hình mặc định khác và click **Create VPC**.
 
-![VPC Config Top](/images/5-Workshop/5.3-Network-Security/vpc_config_top.png)
-![VPC Config Bottom](/images/5-Workshop/5.3-Network-Security/vpc_config_bottom.png)
+![VPC Config Details](/images/5-Workshop/5.3-Network-Security/vpc_create_details.png)
+![VPC Config Tags and Create](/images/5-Workshop/5.3-Network-Security/vpc_create_tags_btn.png)
 
 4. Trên thanh điều hướng bên trái, chọn **Subnets**, click **Create subnet**:
 
@@ -35,8 +35,8 @@ Trong phần này, chúng ta sẽ tiến hành cấu hình dải mạng ảo **A
    * **VPC ID**: Chọn VPC ```ticket-app-vpc``` vừa khởi tạo.
    * Tiến hành thêm lần lượt **4 Subnets** bằng cách click **Add new subnet**:
 
-![Subnet Config Top](/images/5-Workshop/5.3-Network-Security/subnet_config_top.png)
-![Subnet Config Bottom](/images/5-Workshop/5.3-Network-Security/subnet_config_bottom.png)
+![Subnet VPC Name](/images/5-Workshop/5.3-Network-Security/subnet_create_vpc_name.png)
+![Subnet AZ and CIDR](/images/5-Workshop/5.3-Network-Security/subnet_create_az_cidr.png)
      
      * **Subnet 1 (Public Subnet A)**:
        * **Subnet name**: ```ticket-app-subnet-public-a```
@@ -60,4 +60,4 @@ Trong phần này, chúng ta sẽ tiến hành cấu hình dải mạng ảo **A
 
 5. Click **Create subnet** để hoàn tất khởi tạo.
 
-![Subnets Created](/images/5-Workshop/5.3-Network-Security/subnets_complete.png)
+![Subnets Created](/images/5-Workshop/5.3-Network-Security/subnets_created_list.png)

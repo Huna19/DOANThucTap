@@ -14,12 +14,16 @@ We will set up an integration and deployment automation pipeline for the **Backe
 
 #### 1. Initialize Git Credentials for IAM User
 
-Before interacting with CodeCommit, initialize your HTTPS Git credentials:
+Before interacting with CodeCommit, initialize your HTTPS Git credentials or security keys for your IAM User:
 
 1. Open the [AWS IAM console](https://us-east-1.console.aws.amazon.com/iam/home#/users).
 2. Click your IAM User -> Select the **Security credentials** tab.
 3. Scroll down to **HTTPS Git credentials for AWS CodeCommit** -> click **Generate credentials**.
 4. Download the CSV containing **Username** and **Password** and store it securely.
+
+![IAM Search](/images/5-Workshop/5.8-CICD-Pipeline/iam_search.png)
+![IAM Security Credentials Access Key](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_access_key.png)
+![IAM Security Credentials API Keys](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_api_keys.png)
 
 ---
 
@@ -36,7 +40,13 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials:
 2. Open the [AWS CodeBuild console](https://us-east-1.console.aws.amazon.com/codesuite/codebuild/projects?region=us-east-1) -> Click **Create build project**:
    * **Project name**: ```ticket-app-backend-build```.
    * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-backend``` | Branch: ```main```.
-   * **Environment**: Operating system: **Amazon Linux** | Runtime: **Standard** | Image: Select latest version (`aws/codebuild/amazonlinux2-x86_64-standard:5.0`).
+
+![CodeBuild Backend Source](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_source.png)
+
+   * **Environment**: Operating system: **Amazon Linux** | Runtime: **Standard** | Image: Select latest version (`aws/codebuild/amazonlinux-x86_64-standard:6.0`).
+
+![CodeBuild Backend Environment](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_env.png)
+
    * **Buildspec**: Select **Insert build commands** -> Switch to editor and enter:
      ```yaml
      version: 0.2
@@ -54,12 +64,31 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials:
        files:
          - '**/*'
      ```
+
+![CodeBuild Backend Buildspec](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_buildspec.png)
+
+   * **Logs**: Select CloudWatch logs.
+
+![CodeBuild Backend Logs](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_logs.png)
+
    * Click **Create build project**.
+
 3. Open the [AWS CodePipeline console](https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=us-east-1) -> click **Create pipeline**:
    * **Pipeline name**: ```ticket-app-backend-pipeline``` -> click **Next**.
+
+![CodePipeline Backend Settings](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_settings.png)
+
    * **Source stage**: Source: **AWS CodeCommit** | Repository: ```ticket-app-backend``` | Branch: ```main``` -> click **Next**.
+
+![CodePipeline Backend Source Stage](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_source.png)
+
    * **Build stage**: Build provider: **AWS CodeBuild** | Project name: ```ticket-app-backend-build``` -> click **Next**.
+
+![CodePipeline Backend Build Stage Network](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_network.png)
+
    * **Deploy stage**: Deploy provider: **AWS Elastic Beanstalk** | Application: ```ticket-app-App``` | Environment: ```ticket-app-Backend-env``` -> click **Next** -> **Create pipeline**.
+
+![CodePipeline Backend Deploy Stage](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_deploy.png)
 
 4. Push Backend code to CodeCommit:
    * Open a Terminal in your Backend directory ```ticket-booking-backend```.
@@ -85,5 +114,6 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials:
 3. Wait until all stages (Source -> Build -> Deploy) show **Succeeded** (green).
 
 ![Backend Pipeline Succeeded](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend.png)
+![Backend Pipeline List](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_list.png)
 
 4. In the Elastic Beanstalk console, verify the health status of ```ticket-app-Backend-env``` shifts to **Ok** (green).

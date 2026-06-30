@@ -31,7 +31,14 @@ Trong phần này, chúng ta sẽ thiết lập 2 kênh thông báo bằng **Ama
 Sau khi tạo Subscription, hệ thống sẽ gửi một email xác nhận (Confirmation Email) đến địa chỉ email bạn đã nhập. Bạn **bắt buộc** phải vào hộp thư email và click vào link **Confirm subscription** để kích hoạt kênh thông báo. Nếu không xác nhận, hệ thống sẽ không thể gửi thông báo đến email này.
 {{% /notice %}}
 
-![SNS Ops Topic](/images/5-Workshop/5.5-Application-Messaging/sns_ops_topic.png)
+![SNS Create Type](/images/5-Workshop/5.5-Application-Messaging/sns_create_type.png)
+![SNS Ops Create](/images/5-Workshop/5.5-Application-Messaging/sns_ops_create.png)
+![SNS Ops Details](/images/5-Workshop/5.5-Application-Messaging/sns_ops_details.png)
+![SNS Create Subscription](/images/5-Workshop/5.5-Application-Messaging/sns_create_subscription.png)
+![SNS Subscription Pending](/images/5-Workshop/5.5-Application-Messaging/sns_subscription_pending.png)
+![SNS Email Confirm](/images/5-Workshop/5.5-Application-Messaging/sns_email_confirm.png)
+![SNS Email Confirmed Page](/images/5-Workshop/5.5-Application-Messaging/sns_email_confirmed_page.png)
+![SNS Subscription Confirmed](/images/5-Workshop/5.5-Application-Messaging/sns_subscription_confirmed.png)
 
 ---
 
@@ -51,7 +58,9 @@ Sau khi tạo Subscription, hệ thống sẽ gửi một email xác nhận (Con
    * Click **Create subscription**.
 6. Kiểm tra hộp thư email và **xác nhận subscription** tương tự bước trên.
 
-![SNS User Topic](/images/5-Workshop/5.5-Application-Messaging/sns_user_topic.png)
+![SNS User Create](/images/5-Workshop/5.5-Application-Messaging/sns_user_create.png)
+![SNS User Details](/images/5-Workshop/5.5-Application-Messaging/sns_user_details.png)
+![SNS Dashboard](/images/5-Workshop/5.5-Application-Messaging/sns_dashboard.png)
 
 ---
 

@@ -19,15 +19,25 @@ Elastic Beanstalk cần một IAM Role (Instance Profile) để cấp quyền ch
 1. Mở **IAM Console** -> chọn **Roles** -> click **Create role**.
 2. Chọn **Trusted entity type**: **AWS service**.
 3. Chọn **Use case**: **EC2** -> click **Next**.
+
+   ![EB IAM Trusted Entity](/images/5-Workshop/5.5-Application-Messaging/eb_iam_trusted_entity.png)
+
 4. Tìm và tick chọn các **Managed Policies** sau:
    * `AWSElasticBeanstalkWebTier`
    * `AWSElasticBeanstalkWorkerTier`
    * `AWSElasticBeanstalkMulticontainerDocker`
 5. Click **Next** -> Nhập **Role name**: `ticket-app-beanstalk-ec2-role`.
 6. Click **Create role**.
+
+   ![IAM Create Role](/images/5-Workshop/5.5-Application-Messaging/iam_create_role_btn.png)
 7. Mở role `ticket-app-beanstalk-ec2-role` vừa tạo, chọn tab **Permissions** -> click **Add permissions** -> **Create inline policy**.
+
+   ![EB IAM Add Inline Policy](/images/5-Workshop/5.5-Application-Messaging/eb_iam_add_inline_policy.png)
+
 8. Thêm các quyền truy cập vào SQS, SES, SNS, S3 và Secrets Manager. (Bạn có thể cấp FullAccess cho các dịch vụ này nếu đang trong môi trường Lab để tiết kiệm thời gian, hoặc sử dụng mã JSON Policy chuẩn).
 9. Lưu Inline Policy lại với tên `ticket-app-beanstalk-inline-policy`.
+
+   ![EB IAM Inline Policy](/images/5-Workshop/5.5-Application-Messaging/eb_iam_inline_policy.png)
 
 ---
 
@@ -37,6 +47,8 @@ Elastic Beanstalk cần một IAM Role (Instance Profile) để cấp quyền ch
 1. Mở [AWS Elastic Beanstalk console](https://us-east-1.console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1#/applications).
 2. Click **Create application** (trên trang Applications).
 3. Nhập **Application name**: ```ticket-app-App``` và click **Create**.
+
+![EB Create Application](/images/5-Workshop/5.5-Application-Messaging/eb_create_app.png)
 
 **Bước 1.2: Tạo Environment (Backend)**
 1. Trong màn hình quản lý Application ```ticket-app-App```, click **Create a new environment**.

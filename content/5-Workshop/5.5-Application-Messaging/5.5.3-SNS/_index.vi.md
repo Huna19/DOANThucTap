@@ -35,10 +35,8 @@ Sau khi tạo Subscription, hệ thống sẽ gửi một email xác nhận (Con
    ![SNS Ops Create](/images/5-Workshop/5.5-Application-Messaging/sns_ops_create.png)
    ![SNS Ops Details](/images/5-Workshop/5.5-Application-Messaging/sns_ops_details.png)
    ![SNS Create Subscription](/images/5-Workshop/5.5-Application-Messaging/sns_create_subscription.png)
-   ![SNS Subscription Pending](/images/5-Workshop/5.5-Application-Messaging/sns_subscription_pending.png)
-   ![SNS Email Confirm](/images/5-Workshop/5.5-Application-Messaging/sns_email_confirm.png)
-   ![SNS Email Confirmed Page](/images/5-Workshop/5.5-Application-Messaging/sns_email_confirmed_page.png)
-   ![SNS Subscription Confirmed](/images/5-Workshop/5.5-Application-Messaging/sns_subscription_confirmed.png)
+
+   *(Ghi chú: Nhớ xác nhận email và chụp ảnh màn hình Subscription Confirmed để thêm vào nhé)*
 
 ---
 
@@ -59,8 +57,6 @@ Sau khi tạo Subscription, hệ thống sẽ gửi một email xác nhận (Con
 6. Kiểm tra hộp thư email và **xác nhận subscription** tương tự bước trên.
 
    ![SNS User Create](/images/5-Workshop/5.5-Application-Messaging/sns_user_create.png)
-   ![SNS User Details](/images/5-Workshop/5.5-Application-Messaging/sns_user_details.png)
-   ![SNS Dashboard](/images/5-Workshop/5.5-Application-Messaging/sns_dashboard.png)
 
 ---
 
@@ -72,10 +68,22 @@ CloudWatch Alarm này sẽ tự động gửi cảnh báo qua SNS Ops Topic mỗ
 
 1. Mở [Amazon CloudWatch console](https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#alarmsV2:).
 2. Click **Create alarm**.
+
+   ![CloudWatch Create Alarm Button](/images/5-Workshop/5.5-Application-Messaging/cloudwatch_create_alarm_btn.png)
+
 3. Click **Select metric**:
    * Chọn **SQS** → **Queue Metrics**.
+
+   ![CloudWatch Queue Metrics](/images/5-Workshop/5.5-Application-Messaging/cloudwatch_queue_metrics.png)
+
    * Tìm và tích chọn metric **ApproximateNumberOfMessagesVisible** của queue ```checkout-dlq.fifo```.
+
+   ![CloudWatch DLQ Metric](/images/5-Workshop/5.5-Application-Messaging/cloudwatch_dlq_metric.png)
+
    * Click **Select metric**.
+
+   ![CloudWatch Select Metric Button](/images/5-Workshop/5.5-Application-Messaging/cloudwatch_select_metric_btn.png)
+
 4. Cấu hình Alarm:
    * **Statistic**: Chọn **Sum**.
    * **Period**: Chọn **5 minutes**.
@@ -84,6 +92,9 @@ CloudWatch Alarm này sẽ tự động gửi cảnh báo qua SNS Ops Topic mỗ
      * Whenever ApproximateNumberOfMessagesVisible is: **Greater/Equal** (>=).
      * than: Nhập ```1```.
    * Click **Next**.
+
+   ![CloudWatch DLQ Condition](/images/5-Workshop/5.5-Application-Messaging/cloudwatch_dlq_condition.png)
+
 5. Cấu hình **Notification**:
    * **Alarm state trigger**: Chọn **In alarm**.
    * **Select an SNS topic**: Chọn **Select an existing SNS topic** → chọn ```booking-notification-topic``` (Ops topic vừa tạo ở bước 1).
@@ -91,6 +102,9 @@ CloudWatch Alarm này sẽ tự động gửi cảnh báo qua SNS Ops Topic mỗ
 6. Đặt tên Alarm:
    * **Alarm name**: Nhập ```ticket-app-checkout-dlq-alarm```.
    * **Alarm description**: Nhập ```Alarm when DLQ has messages - potential lost bookings!```.
+
+   ![CloudWatch DLQ Alarm Details](/images/5-Workshop/5.5-Application-Messaging/cloudwatch_dlq_alarm_details.png)
+
 7. Click **Next** → xem lại cấu hình → click **Create alarm**.
 
    ![CloudWatch DLQ Alarm](/images/5-Workshop/5.5-Application-Messaging/cloudwatch_dlq_alarm.png)

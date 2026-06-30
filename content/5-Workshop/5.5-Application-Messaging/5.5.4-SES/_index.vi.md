@@ -44,6 +44,7 @@ Hệ thống Ticket Booking của chúng ta có một tính năng tự động g
    * Hai thông số này chính là `SMTP_USERNAME` và `SMTP_PASSWORD` mà bạn cần nhập vào cấu hình **Environment properties** của môi trường Worker trên Beanstalk (đã làm ở chương 5.5.2).
 
    ![SES SMTP Credentials](/images/5-Workshop/5.5-Application-Messaging/ses_smtp.png)
+   ![SES SMTP Download](/images/5-Workshop/5.5-Application-Messaging/ses_smtp_download.png)
 
 {{% notice info %}}
 Trong môi trường Sandbox mặc định của SES, bạn chỉ có thể gửi email ĐẾN những địa chỉ email mà bạn đã Verify. Do đó, khi dùng thử tính năng đặt vé, hãy nhập email mà bạn đã verify ở Bước 1 (hoặc verify thêm các email khác) để nhận được thông báo nhé!

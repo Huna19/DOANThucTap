@@ -28,7 +28,7 @@ Chúng ta sử dụng **AWS API Gateway** (HTTP API) làm cổng bảo vệ các
    * **Target service**: Nhập URL gốc của Beanstalk Application Load Balancer, ví dụ: `http://ticket-app-backend-ALB-123456789.us-east-1.elb.amazonaws.com` (Tuyệt đối không thêm `/` hay `{proxy}` ở cuối).
    * Click **Create**.
 
-![Create HTTP Integration](/images/5-Workshop/5.7-Auth-API-Gateway/api_integration.png)
+   ![Create HTTP Integration](/images/5-Workshop/5.7-Auth-API-Gateway/api_integration.png)
 
 ---
 
@@ -43,7 +43,7 @@ Chúng ta sử dụng **AWS API Gateway** (HTTP API) làm cổng bảo vệ các
    * **Audience**: Nhập **App Client ID** đã copy ở phần trước.
 3. Click **Create**.
 
-![Create JWT Authorizer](/images/5-Workshop/5.7-Auth-API-Gateway/jwt_authorizer.png)
+   ![Create JWT Authorizer](/images/5-Workshop/5.7-Auth-API-Gateway/jwt_authorizer.png)
 
 ---
 
@@ -66,7 +66,7 @@ Chúng ta cần khai báo rõ ràng các API Routes và gán quyền truy cập 
    * Chọn route ```ANY /api/{proxy+}``` vừa tạo -> click **Attach integration** -> Chọn integration Beanstalk ALB.
    * Tại mục **Authorization**: click **Edit** -> Chọn **ticket-app-cognito-authorizer** làm Authorizer -> click **Save**.
 
-![API Gateway Routes List](/images/5-Workshop/5.7-Auth-API-Gateway/api_routes.png)
+   ![API Gateway Routes List](/images/5-Workshop/5.7-Auth-API-Gateway/api_routes.png)
 
 ---
 
@@ -83,4 +83,4 @@ Vì API Gateway chặn các preflight `OPTIONS` requests khi sử dụng JWT Aut
    * **Access-Control-Allow-Credentials**: Chọn **Yes**.
 4. Click **Save**.
 
-![API Gateway CORS](/images/5-Workshop/5.7-Auth-API-Gateway/api_cors.png)
+   ![API Gateway CORS](/images/5-Workshop/5.7-Auth-API-Gateway/api_cors.png)

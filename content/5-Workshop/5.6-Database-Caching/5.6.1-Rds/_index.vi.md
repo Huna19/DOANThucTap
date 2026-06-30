@@ -20,29 +20,53 @@ Trong phần này, chúng ta sẽ cấu hình cơ sở dữ liệu quan hệ **A
 2. Tạo nhóm Subnet cho Database trước:
    * Trên thanh điều hướng trái, chọn **Subnet groups** -> click **Create DB subnet group**.
    * **Name**: ```db-subnet-group-ticket-app```.
+
+   ![RDS Subnet Group Name](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_name.png)
+
    * **VPC**: Chọn VPC ```ticket-app-vpc```.
    * **Availability Zones**: Chọn các Zone ```us-east-1a``` và ```us-east-1b```.
    * **Subnets**: Tích chọn hai **Private Subnets** (CIDR `10.0.11.0/24` và `10.0.12.0/24`).
+
+   ![RDS Subnet Group Subnets](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_subnets.png)
+
    * Click **Create**.
 
-![Create DB Subnet Group](/images/5-Workshop/5.6-Database-Caching/db_subnet_group.png)
+   ![RDS Subnet Group Create Button](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_btn.png)
 
 3. Quay lại **Databases** -> click **Create database**:
    * **Engine options**: Chọn **PostgreSQL**.
+
+   ![RDS Engine](/images/5-Workshop/5.6-Database-Caching/rds_engine.png)
+
    * **Templates**: Chọn **Production** hoặc **Dev/Test** tùy thuộc vào ngân sách lab.
-   * **Deployment options**: Chọn **Multi-AZ DB instance** (AWS sẽ tự động tạo một instance dự phòng đồng bộ tại Availability Zone thứ hai).
+
+   ![RDS Templates](/images/5-Workshop/5.6-Database-Caching/rds_templates.png)
+
    * **Settings**:
      * **DB instance identifier**: ```database-ticket-app```.
      * **Master username**: ```postgres```.
      * **Master password**: Nhập mật khẩu khớp với mật khẩu đã tạo ở Secrets Manager.
+
+   ![RDS Credentials](/images/5-Workshop/5.6-Database-Caching/rds_credentials.png)
+
+   * **Instance configuration**: Chọn loại cấu hình máy chủ phù hợp với nhu cầu.
+
+   ![RDS Instance Class](/images/5-Workshop/5.6-Database-Caching/rds_instance_class.png)
+
    * **Connectivity**:
      * **Virtual private cloud (VPC)**: Chọn VPC của bạn.
      * **DB subnet group**: Chọn ```db-subnet-group-ticket-app``` vừa tạo ở Bước 2.
      * **Public access**: Chọn **No** (Chặn hoàn toàn kết nối từ Internet).
+
+   ![RDS Connectivity](/images/5-Workshop/5.6-Database-Caching/rds_connectivity.png)
+
      * **VPC security group**: Chọn Security Group dành cho RDS Database (tên chứa `ticket-app-rds-instance-sg`).
+
+   ![RDS Security Group](/images/5-Workshop/5.6-Database-Caching/rds_security_group.png)
+
    * Click **Create database** ở cuối trang.
 
-![RDS Database created](/images/5-Workshop/5.6-Database-Caching/rds_database.png)
+   ![RDS Create Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn.png)
 
 ---
 
@@ -62,6 +86,6 @@ Trong phần này, chúng ta sẽ cấu hình cơ sở dữ liệu quan hệ **A
      * **VPC security group**: Chọn Security Group dành cho RDS Proxy (tên chứa `ticket-app-rds-proxy-sg`).
 3. Click **Create proxy**.
 
-![RDS Proxy created](/images/5-Workshop/5.6-Database-Caching/rds_proxy.png)
+   *(Ghi chú: Bạn nhớ chụp lại ảnh RDS Proxy created để chèn vào nhé, file ảnh hiện tại chưa có trong thư mục)*
 
 4. Khi proxy đã khởi tạo thành công, copy địa chỉ **Proxy endpoint** hiển thị tại thông tin của proxy để sử dụng kết nối.

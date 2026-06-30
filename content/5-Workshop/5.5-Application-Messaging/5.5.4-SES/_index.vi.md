@@ -26,7 +26,7 @@ Hệ thống Ticket Booking của chúng ta có một tính năng tự động g
 **Quan trọng:** AWS SES sẽ ngay lập tức gửi một email có tiêu đề *Amazon Web Services – Email Address Verification Request* đến hòm thư của bạn. Bạn **bắt buộc** phải mở email đó ra và click vào link xác nhận. Sau khi xác nhận, trạng thái Identity trong SES sẽ chuyển thành **Verified**.
 {{% /notice %}}
 
-![SES Identity](/images/5-Workshop/5.5-Application-Messaging/ses_identity.png)
+   ![SES Identity](/images/5-Workshop/5.5-Application-Messaging/ses_identity.png)
 
 ---
 
@@ -43,7 +43,7 @@ Hệ thống Ticket Booking của chúng ta có một tính năng tự động g
 5. **CỰC KỲ QUAN TRỌNG:** Hãy click **Download Credentials** (tải file CSV) hoặc bôi đen copy cẩn thận 2 thông số này lưu ra Notepad. Bạn sẽ không thể xem lại mật khẩu này sau khi tắt màn hình!
    * Hai thông số này chính là `SMTP_USERNAME` và `SMTP_PASSWORD` mà bạn cần nhập vào cấu hình **Environment properties** của môi trường Worker trên Beanstalk (đã làm ở chương 5.5.2).
 
-![SES SMTP Credentials](/images/5-Workshop/5.5-Application-Messaging/ses_smtp.png)
+   ![SES SMTP Credentials](/images/5-Workshop/5.5-Application-Messaging/ses_smtp.png)
 
 {{% notice info %}}
 Trong môi trường Sandbox mặc định của SES, bạn chỉ có thể gửi email ĐẾN những địa chỉ email mà bạn đã Verify. Do đó, khi dùng thử tính năng đặt vé, hãy nhập email mà bạn đã verify ở Bước 1 (hoặc verify thêm các email khác) để nhận được thông báo nhé!

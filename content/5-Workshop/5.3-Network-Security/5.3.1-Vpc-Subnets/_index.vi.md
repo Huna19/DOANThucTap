@@ -35,8 +35,8 @@ Trong phần này, chúng ta sẽ tiến hành cấu hình dải mạng ảo **A
    * **VPC ID**: Chọn VPC ```ticket-app-vpc``` vừa khởi tạo.
    * Tiến hành thêm lần lượt **4 Subnets** bằng cách click **Add new subnet**:
 
-![Subnet VPC Name](/images/5-Workshop/5.3-Network-Security/subnet_create_vpc_name.png)
-![Subnet AZ and CIDR](/images/5-Workshop/5.3-Network-Security/subnet_create_az_cidr.png)
+     ![Subnet VPC Name](/images/5-Workshop/5.3-Network-Security/subnet_create_vpc_name.png)
+     ![Subnet AZ and CIDR](/images/5-Workshop/5.3-Network-Security/subnet_create_az_cidr.png)
      
      * **Subnet 1 (Public Subnet A)**:
        * **Subnet name**: ```ticket-app-subnet-public-a```

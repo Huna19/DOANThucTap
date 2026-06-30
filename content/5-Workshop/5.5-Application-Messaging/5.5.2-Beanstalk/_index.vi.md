@@ -25,8 +25,6 @@ Elastic Beanstalk cần một IAM Role (Instance Profile) để cấp quyền ch
    * `AWSElasticBeanstalkMulticontainerDocker`
 5. Click **Next** -> Nhập **Role name**: `ticket-app-beanstalk-ec2-role`.
 6. Click **Create role**.
-
-![EB IAM Role](/images/5-Workshop/5.5-Application-Messaging/eb_iam_role.png)
 7. Mở role `ticket-app-beanstalk-ec2-role` vừa tạo, chọn tab **Permissions** -> click **Add permissions** -> **Create inline policy**.
 8. Thêm các quyền truy cập vào SQS, SES, SNS, S3 và Secrets Manager. (Bạn có thể cấp FullAccess cho các dịch vụ này nếu đang trong môi trường Lab để tiết kiệm thời gian, hoặc sử dụng mã JSON Policy chuẩn).
 9. Lưu Inline Policy lại với tên `ticket-app-beanstalk-inline-policy`.
@@ -57,26 +55,29 @@ Elastic Beanstalk cần một IAM Role (Instance Profile) để cấp quyền ch
    * Click **Next**.
 
 ![EB Service Access](/images/5-Workshop/5.5-Application-Messaging/eb_service_access.jpg)
-8. Cấu hình **Networking**:
+8. Cấu hình **Networking** (Step 3 - Set up networking):
    * **VPC**: Chọn VPC ```ticket-app-vpc```.
-   * **Instance subnets**: Tích chọn hai **Private Subnets** (chỉ cho phép EC2 chạy ẩn bên trong mạng private).
-   * **Load balancer subnets**: Tích chọn hai **Public Subnets** (để Load Balancer có IP public tiếp nhận request).
+   * **Public IP address**: Chọn **Disabled**.
+   * **Instance subnets**: Tích chọn hai **Private Subnets** (`ticket-app-subnet-private-a` và `ticket-app-subnet-private-b`).
    * Click **Next**.
 
 ![EB Instance Subnets](/images/5-Workshop/5.5-Application-Messaging/eb_instance_subnets.jpg)
-![EB Load Balancer Subnets](/images/5-Workshop/5.5-Application-Messaging/eb_lb_subnets.jpg)
-9. Cấu hình **Instances**:
-   * Tại mục **EC2 security groups**, tìm và chọn Security Group `ticket-app-ec2-worker-sg` (hoặc tên tương ứng đã tạo ở phần Network) để cho phép EC2 truy cập được RDS và Redis.
-   * Click **Next**.
+9. Cấu hình **Instance traffic and scaling** (Step 4):
+   * **EC2 security groups**: Chọn Security Group `ticket-app-ec2-worker-sg` để EC2 giao tiếp được với RDS và Redis.
+   * Kéo xuống phần **Capacity** -> **Auto scaling group**:
+     * **Environment type**: Chọn **Load balanced**.
+     * **Min instances**: `2`, **Max instances**: `4`.
+     * **Scaling triggers**: Metric chọn ```CPUUtilization``` (Upper: ```70%```, Lower: ```30%```).
 
 ![EB Security and Scaling](/images/5-Workshop/5.5-Application-Messaging/eb_security_scaling.jpg)
-10. Cấu hình **Capacity** (Auto Scaling):
-   * **Environment type**: Chọn **Load balanced**.
-   * **Instances**: t3.micro.
-   * **Auto Scaling Group**: Min: ```2```, Max: ```4```.
-   * **Scaling triggers**: Metric chọn ```CPUUtilization``` (Upper: ```70%```, Lower: ```30%```).
-   * Click **Next**.
-11. Cấu hình **Load balancer network and security** (Rất quan trọng):
+
+10. Vẫn ở Step 4, kéo xuống phần **Load balancer network settings**:
+   * **Visibility**: Chọn **Public**.
+   * **Load balancer subnets**: Tích chọn hai **Public Subnets** (`ticket-app-subnet-public-a` và `ticket-app-subnet-public-b`).
+
+![EB Load Balancer Subnets](/images/5-Workshop/5.5-Application-Messaging/eb_lb_subnets.jpg)
+
+11. Cấu hình **Load balancer network and security** (Tiếp tục trong màn hình Load balancer):
    * Tại mục **Load balancer security groups**, chọn `ticket-app-alb-sg`.
    * Ở mục **Processes**, tick chọn process mặc định (thường là `default`), click **Actions -> Edit**.
    * Sửa **Health check path** từ `/` thành `/health`. Click **Save**.

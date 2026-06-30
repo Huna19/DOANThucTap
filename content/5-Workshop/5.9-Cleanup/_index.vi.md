@@ -78,6 +78,6 @@ Nếu bạn deploy toàn bộ hạ tầng thông qua file template CloudFormatio
 3. Click **Delete** ở thanh công cụ phía trên.
 4. Xác nhận **Delete stack**.
 
-![CloudFormation Delete](/images/5-Workshop/5.9-Cleanup/cf_delete.png)
+   ![CloudFormation Delete](/images/5-Workshop/5.9-Cleanup/cf_delete.png)
 
 5. Hệ thống sẽ tự động giải phóng toàn bộ tài nguyên mạng và máy chủ (VPC, Subnets, NAT Gateways, Beanstalk, RDS, Redis, S3, Cognito...) một cách an toàn và sạch sẽ mà không cần phải thực hiện dọn dẹp thủ công từng bước.

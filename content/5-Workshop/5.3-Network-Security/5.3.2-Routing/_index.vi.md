@@ -105,3 +105,5 @@ Chúng ta cần phân tách luồng định tuyến cho Public Subnets (đi qua 
 
 3. **Bảng định tuyến Private B (Private Route Table B)**:
    * Thực hiện tương tự, tạo route table ```ticket-app-private-rt-b``` -> trỏ ```0.0.0.0/0``` đến **NAT Gateway B** -> Associate với **ticket-app-subnet-private-b**.
+
+![Private B Route Table](/images/5-Workshop/5.3-Network-Security/rt_private_b_view.png)

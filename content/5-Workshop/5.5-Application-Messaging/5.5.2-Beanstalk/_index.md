@@ -25,6 +25,8 @@ Elastic Beanstalk requires an IAM Role (Instance Profile) to grant EC2 instances
    * `AWSElasticBeanstalkMulticontainerDocker`
 5. Click **Next** -> Enter **Role name**: `ticket-app-beanstalk-ec2-role`.
 6. Click **Create role**.
+
+![EB IAM Role](/images/5-Workshop/5.5-Application-Messaging/eb_iam_role.png)
 7. Open the newly created `ticket-app-beanstalk-ec2-role`, select the **Permissions** tab -> click **Add permissions** -> **Create inline policy**.
 8. Add access permissions to SQS, SES, SNS, S3, and Secrets Manager. (You can grant FullAccess to these services if you are in a Lab environment to save time, or use a standard JSON Policy).
 9. Save the Inline Policy as `ticket-app-beanstalk-inline-policy`.
@@ -46,12 +48,15 @@ Elastic Beanstalk requires an IAM Role (Instance Profile) to grant EC2 instances
 5. **Application code**: Select **Sample application**.
 6. Click **Next**.
 
+![EB Create Environment](/images/5-Workshop/5.5-Application-Messaging/eb_create_env.png)
 ![EB Platform](/images/5-Workshop/5.5-Application-Messaging/eb_platform.png)
 
 7. Configure **Service Access**:
    * **Service role**: Select **Use an existing service role** or let the system create a new one.
    * **EC2 instance profile**: Select the `ticket-app-beanstalk-ec2-role` created in Step 1.
    * Click **Next**.
+
+![EB Service Access](/images/5-Workshop/5.5-Application-Messaging/eb_service_access.png)
 8. Configure **Networking**:
    * **VPC**: Select the ```ticket-app-vpc``` VPC.
    * **Instance subnets**: Check the two **Private Subnets**.
@@ -60,6 +65,8 @@ Elastic Beanstalk requires an IAM Role (Instance Profile) to grant EC2 instances
 9. Configure **Instances**:
    * Under **EC2 security groups**, select the `ticket-app-ec2-worker-sg` (or the equivalent one created in the Network section) to allow EC2 instances to access RDS and Redis.
    * Click **Next**.
+
+![EB Instances SG](/images/5-Workshop/5.5-Application-Messaging/eb_instances_sg.png)
 10. Configure **Capacity** (Auto Scaling):
    * **Environment type**: Select **Load balanced**.
    * **Instances**: t3.micro.

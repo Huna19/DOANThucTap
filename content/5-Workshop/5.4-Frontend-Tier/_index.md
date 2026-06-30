@@ -88,15 +88,23 @@ Note: The S3 bucket must be a standard bucket (REST endpoint), and Static Websit
 ![CloudFront Origin OAC](/images/5-Workshop/5.4-Frontend-Tier/cf_oac.png)
 
    * **Security protections**:
-     * **AWS WAF**: Select **Do not enable security protections** (For the lab, we disable this to avoid additional costs).
+     * **AWS WAF**: Select **Do not enable security protections** (For lab purposes to avoid costs).
+
+![CloudFront WAF](/images/5-Workshop/5.4-Frontend-Tier/cf_waf.png)
+
    * **Default cache behavior**:
      * **Viewer protocol policy**: Select **Redirect HTTP to HTTPS** (Automatically redirect users to HTTPS).
      * **Allowed HTTP methods**: Select ```GET, HEAD, OPTIONS```.
    * **Settings**:
-     * **Price class**: Select **Use only North America and Europe** (or the appropriate Price Class to optimize costs).
+     * **Price class**: Select **Use only North America and Europe** (or appropriate Price Class for cost optimization).
      * **Default root object**: Enter ```index.html```.
+
+![CloudFront Price Class](/images/5-Workshop/5.4-Frontend-Tier/cf_price_class.png)
+
 4. Click **Create distribution** at the bottom.
-5. After the Distribution is successfully created, CloudFront will display its details. Copy the **Distribution domain name** value (e.g., `dxxxxxxxxxx.cloudfront.net`). This is the address used to access the website after the deployment process is complete.
+5. Once the Distribution is successfully created, CloudFront will display its details. Copy the **Distribution domain name** (e.g., `dxxxxxxxxxx.cloudfront.net`). This is the address used to access the website after deployment is complete.
+
+![CloudFront Domain](/images/5-Workshop/5.4-Frontend-Tier/cf_domain.png)
 
 ---
 
@@ -160,7 +168,9 @@ Before uploading the Frontend code to S3, we need to configure the Frontend to c
    npm install
    npm run build
    ```
-   * After successful execution, a ```build``` or ```dist``` directory will be created containing the static files (index.html, JS, CSS, images).
+   * After running successfully, a ```build``` or ```dist``` folder will be created containing static files (index.html, JS, CSS, images).
+
+![Frontend Build](/images/5-Workshop/5.4-Frontend-Tier/npm_build.png)
 
 ---
 
@@ -168,13 +178,15 @@ Before uploading the Frontend code to S3, we need to configure the Frontend to c
 
 1. Go back to the S3 Bucket details page for ```frontend-ticket-app-<your-account-id>``` on the AWS Console.
 2. In the **Objects** tab, click **Upload**.
-3. Drag and drop all the files and subdirectories located **inside** the ```build``` (or ```dist```) directory generated in Step 6 into the upload area.
-   * *Note: The `index.html` file must be uploaded at the root level of the S3 Bucket.*
-4. Click **Upload** at the bottom of the page and wait for the upload to complete.
+3. Drag and drop all files and subfolders **inside** the ```build``` (or ```dist```) folder generated in Step 6 into the upload area.
+   * *Note: The `index.html` file must be uploaded directly to the root directory of the S3 Bucket.*
+
+![S3 Uploading](/images/5-Workshop/5.4-Frontend-Tier/s3_uploading.png)
+
+4. Click **Upload** at the bottom of the page and wait for the process to complete.
 
 ![S3 Upload Complete](/images/5-Workshop/5.4-Frontend-Tier/s3_uploaded_objects.png)
 
 After a successful upload, access the website through the CloudFront Distribution domain name to confirm the interface is displaying correctly.
 
 ![Access Website via CloudFront](/images/5-Workshop/5.4-Frontend-Tier/website_access.png)
-

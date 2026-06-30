@@ -24,9 +24,15 @@ We use AWS Secrets Manager to manage Database credentials. The Backend servers w
    * Input Key/Value:
      * Key: ```username``` | Value: ```postgres```
      * Key: ```password``` | Value: Enter your database password (e.g. ```TicketingAppPassword2026!```).
+
+![Secrets KV](/images/5-Workshop/5.3-Network-Security/secrets_create_kv.png)
+
 4. Click **Next**.
 5. Configure Secret:
    * **Secret name**: Enter ```ticket-app/rds/credentials```.
+
+![Secrets Name](/images/5-Workshop/5.3-Network-Security/secrets_create_name.png)
+
 6. Click **Next** -> Keep rotation settings as default -> click **Store**.
 
 ![Secrets Manager Complete](/images/5-Workshop/5.3-Network-Security/secrets_complete.png)
@@ -47,6 +53,8 @@ Security Groups act as virtual firewalls. We configure a multi-layered model to 
      * **Rule 2**: Type: ```HTTPS``` | Source: ```Anywhere-IPv4``` (```0.0.0.0/0```).
    * Click **Create security group**.
 
+![ALB SG](/images/5-Workshop/5.3-Network-Security/sg_alb_create.png)
+
 2. **Security Group for EC2 Instance (```ticket-app-ec2-worker-sg```)**:
    * Click **Create security group**.
    * **Security group name**: ```ticket-app-ec2-worker-sg```.
@@ -55,6 +63,8 @@ Security Groups act as virtual firewalls. We configure a multi-layered model to 
    * **Inbound rules** -> Click **Add rule**:
      * Type: ```HTTP``` | Port range: ```80``` | Source: Select **Custom** -> Search and choose ```ticket-app-alb-sg``` (Ensures EC2 only accepts traffic from the Load Balancer).
    * Click **Create security group**.
+
+![EC2 SG](/images/5-Workshop/5.3-Network-Security/sg_ec2_create.png)
 
 3. **Security Group for Redis Cache (```ticket-app-redis-sg```)**:
    * Click **Create security group**.
@@ -65,6 +75,8 @@ Security Groups act as virtual firewalls. We configure a multi-layered model to 
      * Type: ```Custom TCP``` | Port range: ```6379``` | Source: Select **Custom** -> choose ```ticket-app-ec2-worker-sg```.
    * Click **Create security group**.
 
+![Redis SG](/images/5-Workshop/5.3-Network-Security/sg_redis_create.png)
+
 4. **Security Group for RDS Proxy (```ticket-app-rds-proxy-sg```)**:
    * Click **Create security group**.
    * **Security group name**: ```ticket-app-rds-proxy-sg```.
@@ -74,6 +86,8 @@ Security Groups act as virtual firewalls. We configure a multi-layered model to 
      * Type: ```PostgreSQL``` (port `5432`) | Source: Select **Custom** -> choose ```ticket-app-ec2-worker-sg```.
    * Click **Create security group**.
 
+![RDS Proxy SG](/images/5-Workshop/5.3-Network-Security/sg_proxy_create.png)
+
 5. **Security Group for RDS Instance (```ticket-app-rds-instance-sg```)**:
    * Click **Create security group**.
    * **Security group name**: ```ticket-app-rds-instance-sg```.
@@ -82,5 +96,7 @@ Security Groups act as virtual firewalls. We configure a multi-layered model to 
    * **Inbound rules** -> Click **Add rule**:
      * Type: ```PostgreSQL``` (port `5432`) | Source: Select **Custom** -> choose ```ticket-app-rds-proxy-sg``` (Ensures DB only accepts connections from the RDS Proxy).
    * Click **Create security group**.
+
+![RDS Instance SG](/images/5-Workshop/5.3-Network-Security/sg_rds_create.png)
 
 ![Security Groups Complete](/images/5-Workshop/5.3-Network-Security/security_groups.png)

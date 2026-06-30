@@ -104,4 +104,6 @@ We need to separate the routing paths for Public Subnets (via Internet Gateway) 
 ![Edit Private A Subnets](/images/5-Workshop/5.3-Network-Security/rt_private_a_edit_subnets.png)
 
 3. **Private Route Table B**:
-   * Do the same, create route table ```ticket-app-private-rt-b``` -> route ```0.0.0.0/0``` to **NAT Gateway B** -> Associate with **ticket-app-subnet-private-b**.
+   * Create ```ticket-app-private-rt-b``` similarly -> route ```0.0.0.0/0``` to **NAT Gateway B** -> Associate with **ticket-app-subnet-private-b**.
+
+![Private B Route Table](/images/5-Workshop/5.3-Network-Security/rt_private_b_view.png)

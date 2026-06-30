@@ -89,14 +89,21 @@ Lưu ý: Bucket S3 phải là bucket thông thường (REST endpoint), **không 
 
    * **Security protections**:
      * **AWS WAF**: Chọn **Do not enable security protections** (Đối với bài lab nhằm tránh phát sinh chi phí).
+
+![CloudFront WAF](/images/5-Workshop/5.4-Frontend-Tier/cf_waf.png)
    * **Default cache behavior**:
      * **Viewer protocol policy**: Chọn **Redirect HTTP to HTTPS** (Tự động chuyển hướng người dùng sang HTTPS).
      * **Allowed HTTP methods**: Chọn ```GET, HEAD, OPTIONS```.
    * **Settings**:
      * **Price class**: Chọn **Use only North America and Europe** (hoặc Price Class phù hợp để tối ưu chi phí).
      * **Default root object**: Nhập ```index.html```.
+
+![CloudFront Price Class](/images/5-Workshop/5.4-Frontend-Tier/cf_price_class.png)
+
 4. Click **Create distribution** ở dưới cùng.
 5. Sau khi Distribution được tạo thành công, CloudFront sẽ hiển thị thông tin. Sao chép giá trị **Distribution domain name** (ví dụ: `dxxxxxxxxxx.cloudfront.net`). Đây là địa chỉ dùng để truy cập website sau khi quá trình triển khai hoàn tất.
+
+![CloudFront Domain](/images/5-Workshop/5.4-Frontend-Tier/cf_domain.png)
 
 ---
 
@@ -162,6 +169,8 @@ Trước khi upload code Frontend lên S3, chúng ta cần cấu hình để Fro
    ```
    * Sau khi chạy thành công, thư mục ```build``` hoặc ```dist``` sẽ được tạo ra chứa các tệp tin tĩnh (index.html, JS, CSS, hình ảnh).
 
+![Frontend Build](/images/5-Workshop/5.4-Frontend-Tier/npm_build.png)
+
 ---
 
 #### 7. Upload mã nguồn lên S3 Frontend Bucket
@@ -170,6 +179,9 @@ Trước khi upload code Frontend lên S3, chúng ta cần cấu hình để Fro
 2. Tại tab **Objects**, click **Upload**.
 3. Kéo và thả toàn bộ các tệp tin và thư mục con nằm **bên trong** thư mục ```build``` (hoặc ```dist```) vừa sinh ra ở Bước 6 vào khung upload.
    * *Lưu ý: Phải tải lên file `index.html` nằm ngay tại thư mục gốc của S3 Bucket.*
+
+![S3 Uploading](/images/5-Workshop/5.4-Frontend-Tier/s3_uploading.png)
+
 4. Click **Upload** ở cuối trang và đợi quá trình tải lên hoàn tất.
 
 ![S3 Upload Complete](/images/5-Workshop/5.4-Frontend-Tier/s3_uploaded_objects.png)

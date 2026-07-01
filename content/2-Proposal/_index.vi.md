@@ -126,7 +126,7 @@ Bảng tính chi phí chi tiết của hệ thống dựa trên công cụ ướ
 | 5 | S3 & CloudFront | 20GB Standard Storage, CloudFront Free Tier | ~ $0.53 |
 | 6 | API Gateway | 1 triệu requests/tháng | ~ $1.00 |
 | 7 | AWS Cognito | Tối đa 10,000 MAU | $0.00 |
-| 8 | CI/CD (CodePipeline & CodeBuild) | 2 pipelines | ~ $3.50 |
+| 8 | CI/CD (CodePipeline & CodeBuild) | 2 pipelines, 1 build/tháng | ~ $3.50 |
 | 9 | CloudWatch & Secrets Manager & SES | Lưu trữ logs, 1 secret, 5000 emails/tháng | ~ $5.99 |
 | **Tổng** | **Ước tính chi phí hàng tháng** | | **~ $217.67** |
 

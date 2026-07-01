@@ -121,7 +121,7 @@ This estimate is based on the [AWS Pricing Calculator](https://calculator.aws/#/
 | 1 | Elastic Beanstalk (EC2 + ALB) | 4 instances `t3.micro`, 2 Application Load Balancers | ~ $55.15 |
 | 2 | RDS PostgreSQL | `db.t3.small` Multi-AZ, 20GB gp3 (Utilization 30%) | ~ $60.52 |
 | 3 | ElastiCache Redis | 2-node cluster of `cache.t3.micro` | ~ $24.82 |
-| 4 | NAT Gateways | 1 NAT Gateway operating across 2 Availability Zones | ~ $66.15 |
+| 4 | NAT Gateways | 2 NAT Gateways operating across 2 Availability Zones | ~ $66.15 |
 | 5 | S3 & CloudFront | 20GB Standard Storage, CloudFront Free Tier | ~ $0.53 |
 | 6 | API Gateway | 1 million requests/month | ~ $1.00 |
 | 7 | AWS Cognito | Free tier up to 10,000 Monthly Active Users (MAUs) | $0.00 |

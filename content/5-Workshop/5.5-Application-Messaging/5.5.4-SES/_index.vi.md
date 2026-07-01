@@ -42,15 +42,20 @@ Hệ thống Ticket Booking của chúng ta có một tính năng tự động g
 
 1. Vẫn ở [Amazon SES console](https://us-east-1.console.aws.amazon.com/ses/home?region=us-east-1), trên menu trái chọn **SMTP settings**.
 2. Click nút **Create SMTP credentials** ở giữa trang.
+
+   ![SES SMTP Settings](/images/5-Workshop/5.5-Application-Messaging/ses_smtp_settings.jpg)
+
 3. Thao tác này sẽ mở ra một tab mới chuyển hướng đến giao diện IAM:
    * **IAM User Name**: Bạn có thể để mặc định hoặc đổi thành `ticket-app-smtp-user`.
+
+   ![SES SMTP Create User](/images/5-Workshop/5.5-Application-Messaging/ses_smtp_create_user.jpg)
+
    * Click **Create user**.
 4. Màn hình tiếp theo sẽ hiển thị **SMTP username** và **SMTP password**.
 5. **CỰC KỲ QUAN TRỌNG:** Hãy click **Download Credentials** (tải file CSV) hoặc bôi đen copy cẩn thận 2 thông số này lưu ra Notepad. Bạn sẽ không thể xem lại mật khẩu này sau khi tắt màn hình!
    * Hai thông số này chính là `SMTP_USERNAME` và `SMTP_PASSWORD` mà bạn cần nhập vào cấu hình **Environment properties** của môi trường Worker trên Beanstalk (đã làm ở chương 5.5.2).
 
-   ![SES SMTP Credentials](/images/5-Workshop/5.5-Application-Messaging/ses_smtp.png)
-   ![SES SMTP Download](/images/5-Workshop/5.5-Application-Messaging/ses_smtp_download.png)
+   ![SES SMTP Download](/images/5-Workshop/5.5-Application-Messaging/ses_smtp_download.jpg)
 
 {{% notice info %}}
 Trong môi trường Sandbox mặc định của SES, bạn chỉ có thể gửi email ĐẾN những địa chỉ email mà bạn đã Verify. Do đó, khi dùng thử tính năng đặt vé, hãy nhập email mà bạn đã verify ở Bước 1 (hoặc verify thêm các email khác) để nhận được thông báo nhé!

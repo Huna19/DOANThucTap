@@ -19,6 +19,9 @@ Trong phần này, chúng ta sẽ cấu hình cơ sở dữ liệu quan hệ **A
 1. Mở [Amazon RDS console](https://us-east-1.console.aws.amazon.com/rds/home?region=us-east-1#).
 2. Tạo nhóm Subnet cho Database trước:
    * Trên thanh điều hướng trái, chọn **Subnet groups** -> click **Create DB subnet group**.
+
+   ![RDS Subnet Group Button](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_btn.png)
+
    * **Name**: ```db-subnet-group-ticket-app```.
 
    ![RDS Subnet Group Name](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_name.png)
@@ -30,8 +33,6 @@ Trong phần này, chúng ta sẽ cấu hình cơ sở dữ liệu quan hệ **A
    ![RDS Subnet Group Subnets](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_subnets.png)
 
    * Click **Create**.
-
-   ![RDS Subnet Group Create Button](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_btn.png)
 
 3. Quay lại **Databases** -> click **Create database**:
    * **Engine options**: Chọn **PostgreSQL**.

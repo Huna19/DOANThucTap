@@ -20,18 +20,20 @@ We use AWS Secrets Manager to manage Database credentials. The Backend servers w
 
 1. Open the [AWS Secrets Manager console](https://us-east-1.console.aws.amazon.com/secretsmanager/home?region=us-east-1#/listSecrets).
 2. Click **Store a new secret**.
+
+![Store Secret Button](/images/5-Workshop/5.3-Network-Security/secret_store_btn.png)
 3. Select secret type: **Credentials for Amazon RDS database** or **Other type of secret**:
    * Input Key/Value:
      * Key: ```username``` | Value: ```postgres```
      * Key: ```password``` | Value: Enter your database password (e.g. ```TicketingAppPassword2026!```).
 
-![Secrets KV](/images/5-Workshop/5.3-Network-Security/secrets_create_kv.png)
+![Secrets Type and Credentials](/images/5-Workshop/5.3-Network-Security/secret_type_credentials.png)
 
 4. Click **Next**.
 5. Configure Secret:
    * **Secret name**: Enter ```ticket-app/rds/credentials```.
 
-![Secrets Name](/images/5-Workshop/5.3-Network-Security/secrets_create_name.png)
+![Secrets Name](/images/5-Workshop/5.3-Network-Security/secret_name.png)
 
 6. Click **Next** -> Keep rotation settings as default -> click **Store**.
 

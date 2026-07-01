@@ -19,13 +19,20 @@ For security, the database instance only accepts internal connections from Priva
 1. Open the [Amazon RDS console](https://us-east-1.console.aws.amazon.com/rds/home?region=us-east-1#).
 2. Create DB Subnet Group:
    * Select **Subnet groups** -> click **Create DB subnet group**.
+
+   ![RDS Subnet Group Button](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_btn.png)
+
    * **Name**: ```db-subnet-group-ticket-app```.
+
+   ![RDS Subnet Group Name](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_name.png)
+
    * **VPC**: Select the ```ticket-app-vpc``` VPC.
    * **Availability Zones**: Select ```us-east-1a``` and ```us-east-1b```.
    * **Subnets**: Select the two **Private Subnets** (CIDR `10.0.11.0/24` and `10.0.12.0/24`).
-   * Click **Create**.
 
-![Create DB Subnet Group](/images/5-Workshop/5.6-Database-Caching/db_subnet_group.png)
+   ![RDS Subnet Group Subnets](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_subnets.png)
+
+   * Click **Create**.
 
 3. Go back to **Databases** -> click **Create database**:
    * **Engine options**: Select **PostgreSQL**.
@@ -39,10 +46,16 @@ For security, the database instance only accepts internal connections from Priva
      * **Virtual private cloud (VPC)**: Select your VPC.
      * **DB subnet group**: Select ```db-subnet-group-ticket-app```.
      * **Public access**: Select **No**.
-     * **VPC security group**: Select DB Security Group (e.g. `ticket-app-rds-instance-sg`).
-   * Click **Create database**.
 
-![RDS Database created](/images/5-Workshop/5.6-Database-Caching/rds_database.png)
+   ![RDS Connectivity](/images/5-Workshop/5.6-Database-Caching/rds_connectivity.png)
+
+     * **VPC security group**: Select DB Security Group (e.g. `ticket-app-rds-instance-sg`).
+
+   ![RDS Security Group](/images/5-Workshop/5.6-Database-Caching/rds_security_group.png)
+
+   * Click **Create database** at the bottom of the page.
+
+   ![RDS Create Database Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn.png)
 
 ---
 

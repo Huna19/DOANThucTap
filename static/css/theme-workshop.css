@@ -226,3 +226,17 @@ div.notices.info p {
   border-top: 30px solid #fd9827;
   background: #fff2db;
 }
+
+/* Fix: read-icon (visited checkmark) overlapping in sidebar */
+#sidebar ul li .read-icon {
+  float: none;
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#sidebar ul li > a {
+  position: relative;
+  padding-right: 20px;
+}

@@ -20,7 +20,7 @@ We will set up an integration and deployment automation pipeline for the **Worke
 ![CodeCommit Repository Worker](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_worker.png)
 
 2. **Create CodeBuild Project**:
-   * Open CodeBuild -> Click **Create build project**:
+   * Open CodeBuild -> Click **Create project**:
      * **Project name**: ```ticket-app-worker-build```.
      * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-worker``` | Branch: ```main```.
 

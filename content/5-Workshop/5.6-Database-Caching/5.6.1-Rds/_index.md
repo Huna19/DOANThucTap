@@ -34,7 +34,12 @@ For security, the database instance only accepts internal connections from Priva
 
    * Click **Create**.
 
+   ![RDS Subnet Group Create Button](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_create_btn.jpg)
+
 3. Go back to **Databases** -> click **Create database**:
+
+   ![RDS Create Database Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn.png)
+
    * **Engine options**: Select **PostgreSQL**.
    * **Templates**: Select **Production** or **Dev/Test**.
    * **Deployment options**: Select **Multi-AZ DB instance**.
@@ -55,13 +60,16 @@ For security, the database instance only accepts internal connections from Priva
 
    * Click **Create database** at the bottom of the page.
 
-   ![RDS Create Database Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn.png)
+   ![RDS Create Database Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn_bottom.jpg)
 
 ---
 
 #### 2. Configure Amazon RDS Proxy
 
 1. Select **Proxies** -> click **Create proxy**.
+
+   ![RDS Proxy Create Button](/images/5-Workshop/5.6-Database-Caching/rds_proxy_create_btn.jpg)
+
 2. In the **Create proxy** configuration:
    * **Proxy identifier**: ```rds-proxy-ticket-app```.
    * **Engine family**: Select **PostgreSQL**.
@@ -70,11 +78,10 @@ For security, the database instance only accepts internal connections from Priva
    * **Authentication**:
      * **Secrets Manager secret**: Select ```ticket-app/rds/credentials```.
      * **IAM role**: Select **Create an IAM role**.
+
+   ![RDS Proxy Authentication](/images/5-Workshop/5.6-Database-Caching/rds_proxy_auth.jpg)
+
    * **Connectivity**:
      * **Subnets**: Select Private Subnets.
      * **VPC security group**: Select Proxy Security Group (e.g. `ticket-app-rds-proxy-sg`).
 3. Click **Create proxy**.
-
-![RDS Proxy created](/images/5-Workshop/5.6-Database-Caching/rds_proxy.png)
-
-4. Once created, copy the **Proxy endpoint** to configure connections.

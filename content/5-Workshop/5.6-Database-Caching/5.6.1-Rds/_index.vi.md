@@ -34,7 +34,12 @@ Trong phần này, chúng ta sẽ cấu hình cơ sở dữ liệu quan hệ **A
 
    * Click **Create**.
 
+   ![RDS Subnet Group Create Button](/images/5-Workshop/5.6-Database-Caching/rds_subnet_group_create_btn.jpg)
+
 3. Quay lại **Databases** -> click **Create database**:
+
+   ![RDS Create Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn.png)
+
    * **Engine options**: Chọn **PostgreSQL**.
 
    ![RDS Engine](/images/5-Workshop/5.6-Database-Caching/rds_engine.png)
@@ -67,13 +72,16 @@ Trong phần này, chúng ta sẽ cấu hình cơ sở dữ liệu quan hệ **A
 
    * Click **Create database** ở cuối trang.
 
-   ![RDS Create Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn.png)
+   ![RDS Create Database Button](/images/5-Workshop/5.6-Database-Caching/rds_create_btn_bottom.jpg)
 
 ---
 
 #### 2. Cấu hình Amazon RDS Proxy
 
 1. Trên thanh điều hướng RDS, chọn **Proxies** -> click **Create proxy**.
+
+   ![RDS Proxy Create Button](/images/5-Workshop/5.6-Database-Caching/rds_proxy_create_btn.jpg)
+
 2. Trong giao diện cấu hình **Create proxy**:
    * **Proxy identifier**: ```rds-proxy-ticket-app```.
    * **Engine family**: Chọn **PostgreSQL**.
@@ -82,11 +90,10 @@ Trong phần này, chúng ta sẽ cấu hình cơ sở dữ liệu quan hệ **A
    * **Authentication**:
      * **Secrets Manager secret**: Chọn Secret ```ticket-app/rds/credentials``` đã tạo ở phần trước.
      * **IAM role**: Chọn **Create an IAM role** để hệ thống tự tạo role cấp quyền cho Proxy đọc mật khẩu từ Secret.
+
+   ![RDS Proxy Authentication](/images/5-Workshop/5.6-Database-Caching/rds_proxy_auth.jpg)
+
    * **Connectivity**:
      * **Subnets**: Tích chọn các Private Subnets.
      * **VPC security group**: Chọn Security Group dành cho RDS Proxy (tên chứa `ticket-app-rds-proxy-sg`).
 3. Click **Create proxy**.
-
-   *(Ghi chú: Bạn nhớ chụp lại ảnh RDS Proxy created để chèn vào nhé, file ảnh hiện tại chưa có trong thư mục)*
-
-4. Khi proxy đã khởi tạo thành công, copy địa chỉ **Proxy endpoint** hiển thị tại thông tin của proxy để sử dụng kết nối.

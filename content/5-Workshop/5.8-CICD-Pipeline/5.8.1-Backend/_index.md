@@ -17,13 +17,22 @@ We will set up an integration and deployment automation pipeline for the **Backe
 Before interacting with CodeCommit, initialize your HTTPS Git credentials or security keys for your IAM User:
 
 1. Open the [AWS IAM console](https://us-east-1.console.aws.amazon.com/iam/home#/users).
-2. Click your IAM User -> Select the **Security credentials** tab.
-3. Scroll down to **HTTPS Git credentials for AWS CodeCommit** -> click **Generate credentials**.
-4. Download the CSV containing **Username** and **Password** and store it securely.
+   
+   ![IAM Search](/images/5-Workshop/5.8-CICD-Pipeline/iam_search.png)
 
-![IAM Search](/images/5-Workshop/5.8-CICD-Pipeline/iam_search.png)
-![IAM Security Credentials Access Key](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_access_key.png)
-![IAM Security Credentials API Keys](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_api_keys.png)
+2. Click your IAM User -> Select the **Security credentials** tab.
+   
+   ![IAM Security Credentials Access Key](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_access_key.png)
+
+3. Scroll down to the **API keys** section -> click **Generate API key**.
+   
+   ![IAM Generate API Key](/images/5-Workshop/5.8-CICD-Pipeline/iam_generate_api_key.png)
+
+4. In the **Generate API key** window, select **AWS CodeCommit** for the Service and click **Generate API key**.
+   
+   ![IAM Security Credentials API Keys](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_api_keys.png)
+
+5. Download the CSV containing the **Username** and **Password** (or API key info) and store it securely.
 
 ---
 
@@ -37,7 +46,7 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials or sec
 
 ![Create CodeCommit Repository](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_repo_create.png)
 
-2. Open the [AWS CodeBuild console](https://us-east-1.console.aws.amazon.com/codesuite/codebuild/projects?region=us-east-1) -> Click **Create build project**:
+2. Open the [AWS CodeBuild console](https://us-east-1.console.aws.amazon.com/codesuite/codebuild/projects?region=us-east-1) -> Click **Create project**:
    * **Project name**: ```ticket-app-backend-build```.
    * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-backend``` | Branch: ```main```.
 

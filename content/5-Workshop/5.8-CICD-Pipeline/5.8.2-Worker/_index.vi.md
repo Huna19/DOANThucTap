@@ -20,7 +20,7 @@ Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động c
    ![CodeCommit Repository Worker](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_worker.png)
 
 2. **Tạo CodeBuild Project**:
-   * Mở CodeBuild -> Click **Create build project**:
+   * Mở CodeBuild -> Click **Create project**:
      * **Project name**: ```ticket-app-worker-build```.
      * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-worker``` | Branch: ```main```.
 

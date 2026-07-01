@@ -55,7 +55,7 @@ The system is deployed in a custom VPC with isolated Public and Private subnets 
 | **Database Proxy**| RDS Proxy | Performs connection pooling to handle connections efficiently and protect the database database instance. |
 | **Cache** | ElastiCache Redis | 2-node cluster of `cache.t3.micro` instances (1 Primary, 1 Replica) running Redis 7.0.7 for session store and event data caching. |
 | **Messaging** | SQS FIFO | Managed queues: `booking-queue.fifo` for processing purchases sequentially, with `checkout-dlq.fifo` (Dead Letter Queue) to capture exceptions. |
-| **Email & Alerts** | SNS & SES | **SES** delivers ticket PDFs. **SNS** sends operational alerts and infrastructure notifications to administrators. |
+| **Email & Alerts** | SNS & SES | **SES** delivers electronic tickets. **SNS** sends operational alerts and infrastructure notifications to administrators. |
 | **Security** | IAM, Secrets Manager, KMS | **Cognito** manages user accounts; **Secrets Manager** secures database credentials with a 7-day auto-rotation; **KMS** encrypts at-rest data. |
 | **CI/CD** | CodePipeline, CodeBuild, CodeCommit | Automates software deployment from commit to production. |
 | **Monitoring** | CloudWatch | Collects logs, gathers infrastructure metrics, and runs alarms. |
@@ -133,7 +133,33 @@ This estimate is based on the [AWS Pricing Calculator](https://calculator.aws/#/
 
 ---
 
-### 8. Expected Outcomes
+### 8. System Processing Flows & Technical Strengths
+
+The system utilizes an **Event-Driven Microservices** architecture to decouple user-facing operations from background tasks. The core workflows and architectural characteristics include:
+
+#### 8.1 Core Processing Flows
+
+*   **Authentication Flow:** 
+    Integrated with Amazon Cognito for identity management. API requests are authenticated using JWT validation middleware (`aws-jwt-verify`), ensuring secure and stateless authorization between the client and backend services.
+*   **Virtual Waiting Room & Concurrency Control:** 
+    To handle high concurrency during ticket sales, a virtual waiting room is implemented using **ElastiCache Redis**. When processing a booking, the system applies a distributed locking mechanism on Redis to reserve tickets temporarily, mitigating race conditions and preventing overselling.
+*   **Asynchronous Background Processing:** 
+    Using **Amazon SQS FIFO**, resource-intensive tasks are offloaded from the main API. Operations such as payment webhooks (MoMo IPN), e-ticket generation, and SES/SNS notifications are processed asynchronously by backend Workers. This ensures the primary API remains highly responsive.
+*   **Reservation Lifecycle & Automated Cleanup:** 
+    Reservations are granted a limited time window. If a payment is not completed or the user cancels, a `RESERVATION_EXPIRED` event is queued in SQS. The Worker tier consumes this event and performs a transactional database rollback (updating the booking status to 'cancelled' and releasing ticket rows). Simultaneously, it dynamically increments the available ticket inventory in Redis and removes the distributed locks. This automated cleanup ensures unpurchased tickets are rapidly made available to other users in the virtual queue, maximizing inventory utilization.
+
+#### 8.2 Architectural Strengths
+
+*   **Scalability and Decoupling:** 
+    The Frontend, Backend API, and Worker tiers operate independently, allowing targeted auto-scaling based on specific load metrics. SQS acts as a buffer to handle traffic spikes without overloading the PostgreSQL database.
+*   **Data Consistency:** 
+    The combination of Redis distributed locks and SQS FIFO (exactly-once processing) guarantees strict data consistency across ticket reservations and payment processing, routing any failures to a Dead Letter Queue (DLQ) for debugging.
+*   **Modern Frontend Stack:** 
+    Built with Next.js, the frontend provides Server-Side Rendering (SSR) capabilities and leverages React Query for optimized data fetching and state management, ensuring a robust user experience under heavy load.
+
+---
+
+### 9. Expected Outcomes
 *   **Technical Improvements:**
     *   Responsive API endpoints with response times below 200ms by offloading heavy work to background workers.
     *   No application downtime or double-bookings during ticket spikes.

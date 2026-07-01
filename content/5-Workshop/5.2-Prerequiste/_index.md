@@ -331,8 +331,6 @@ The entire core infrastructure of the application (VPC, RDS, Redis, Beanstalk, S
    * Click **Choose file** and upload the ```template.yaml``` file from your project directory.
    * Click **Next**.
 
-![Upload Template](/images/5-Workshop/5.2-Prerequiste/cf_upload.png)
-
 4. In the **Specify stack details** interface:
    * **Stack name**: Enter ```ticket-app-stack```.
    * **Parameters**:
@@ -342,17 +340,11 @@ The entire core infrastructure of the application (VPC, RDS, Redis, Beanstalk, S
      * Keep the other default parameters.
    * Click **Next**.
 
-![Specify Parameters](/images/5-Workshop/5.2-Prerequiste/cf_parameters.png)
-
 5. In the **Configure stack options** interface, keep the default configuration and click **Next**.
 6. In the **Review ticket-app-stack** interface:
    * Scroll to the bottom of the page, check **I acknowledge that AWS CloudFormation might create IAM resources with custom names.** (Confirm granting CloudFormation permission to create IAM Roles).
    * Click **Submit** to start deployment.
 
-![Review Capabilities](/images/5-Workshop/5.2-Prerequiste/cf_capabilities.png)
-
 7. The deployment process will take approximately **15 - 20 minutes** to initialize all resources (especially RDS Multi-AZ, CloudFront CDN, and Beanstalk Environments). Wait until the status changes to **CREATE_COMPLETE**.
-
-![CloudFormation CREATE_COMPLETE](/images/5-Workshop/5.2-Prerequiste/cf_complete.png)
 
 After the CloudFormation Stack deploys successfully, your basic infrastructure is complete! In the following chapters, if you choose **Option A**, you only need to navigate through the services to **verify and check** configurations, then proceed to the source code deployment steps.

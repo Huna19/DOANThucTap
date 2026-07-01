@@ -134,7 +134,33 @@ Bảng tính chi phí chi tiết của hệ thống dựa trên công cụ ướ
 
 ---
 
-### 8. Kết quả kỳ vọng
+### 8. Các Luồng Xử Lý Hệ Thống & Đặc Điểm Kỹ Thuật
+
+Hệ thống ứng dụng kiến trúc **Event-Driven Microservices** nhằm tách biệt các thao tác trực tiếp của người dùng với các tác vụ xử lý nền. Dưới đây là các luồng hoạt động chính và đặc điểm kiến trúc:
+
+#### 8.1 Các Luồng Xử Lý Cốt Lõi (Core Processing Flows)
+
+*   **Luồng Xác thực (Authentication):** 
+    Sử dụng Amazon Cognito để quản lý định danh. Các request tới API được xác thực thông qua JWT token middleware (`aws-jwt-verify`), đảm bảo tính bảo mật và phi trạng thái (stateless) giữa client và backend.
+*   **Hàng Đợi Ảo & Xử Lý Đồng Thời (Concurrency Control):** 
+    Để xử lý lượng truy cập lớn khi mở bán vé, hệ thống dùng **ElastiCache Redis** làm phòng chờ ảo. Khi đặt vé, hệ thống thiết lập khóa phân tán (distributed lock) trên Redis để giữ chỗ tạm thời, giúp tránh lỗi race condition và ngăn chặn tình trạng bán vượt quá số lượng vé (overselling).
+*   **Xử Lý Bất Đồng Bộ (Asynchronous Processing):** 
+    Sử dụng **Amazon SQS FIFO**, các tác vụ nặng được tách khỏi luồng API chính. Việc nhận Webhook thanh toán (MoMo IPN), tạo vé điện tử, và gửi email/SMS qua SES/SNS được thực hiện ngầm bởi tầng Worker. Điều này giúp API luôn phản hồi nhanh chóng.
+*   **Quản Lý Vòng Đời Đặt Chỗ & Tự Động Thu Hồi (Reservation Lifecycle):** 
+    Mỗi giao dịch giữ chỗ có một khoảng thời gian giới hạn (TTL). Nếu người dùng không hoàn tất thanh toán hoặc chủ động hủy vé, hệ thống phát sinh sự kiện `RESERVATION_EXPIRED` vào SQS. Tầng Worker sẽ tiêu thụ sự kiện này, thực thi một transaction trên database (chuyển trạng thái booking thành 'cancelled', giải phóng vé), đồng thời hoàn trả số lượng vé vào kho (inventory) trên Redis và gỡ bỏ các khóa phân tán (locks). Cơ chế này đảm bảo các vé không được thanh toán sẽ ngay lập tức được trả lại hệ thống, tối đa hóa tỷ lệ lấp đầy sự kiện.
+
+#### 8.2 Đặc Điểm Kiến Trúc (Architectural Strengths)
+
+*   **Khả năng mở rộng & Phân rã (Scalability & Decoupling):** 
+    Frontend, Backend API và Worker hoạt động độc lập, cho phép scale tự động dựa trên mức độ tải riêng biệt. SQS đóng vai trò làm bộ đệm (buffer) hấp thụ các đợt tải đột biến, bảo vệ database PostgreSQL khỏi tình trạng quá tải kết nối.
+*   **Đảm bảo Tính nhất quán (Data Consistency):** 
+    Sự kết hợp giữa cơ chế lock của Redis và khả năng xử lý tuần tự (exactly-once) của SQS FIFO đảm bảo tính nhất quán dữ liệu cho các giao dịch đặt vé. Các giao dịch lỗi được chuyển tiếp vào Dead Letter Queue (DLQ) để phục vụ việc phân tích.
+*   **Công nghệ Frontend Hiện đại:** 
+    Sử dụng Next.js hỗ trợ Server-Side Rendering (SSR) kết hợp với React Query để tối ưu fetching dữ liệu, cung cấp trải nghiệm ổn định và mượt mà cho người dùng kể cả khi chịu tải cao.
+
+---
+
+### 9. Kết quả kỳ vọng
 *   **Cải tiến kỹ thuật:** 
     *   Hệ thống vận hành mượt mà, thời gian phản hồi API đặt vé (Response Time) luôn dưới 200ms nhờ cơ chế xử lý bất đồng bộ qua hàng đợi.
     *   Khả năng chịu tải tăng vượt bậc, sẵn sàng tiếp nhận hàng chục nghìn lượt đặt vé đồng thời mà không gặp tình trạng nghẽn cổ chai database.

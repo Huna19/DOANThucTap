@@ -331,8 +331,6 @@ Toàn bộ hạ tầng cốt lõi của ứng dụng (VPC, RDS, Redis, Beanstalk
    * Click **Choose file** và tải lên tệp tin ```template.yaml``` trong thư mục dự án của bạn.
    * Click **Next**.
 
-![Upload Template](/images/5-Workshop/5.2-Prerequiste/cf_upload.png)
-
 4. Tại giao diện **Specify stack details**:
    * **Stack name**: Nhập ```ticket-app-stack```.
    * **Parameters**:
@@ -342,17 +340,11 @@ Toàn bộ hạ tầng cốt lõi của ứng dụng (VPC, RDS, Redis, Beanstalk
      * Giữ nguyên các tham số mặc định khác.
    * Click **Next**.
 
-![Specify Parameters](/images/5-Workshop/5.2-Prerequiste/cf_parameters.png)
-
 5. Tại giao diện **Configure stack options**, giữ nguyên cấu hình mặc định và click **Next**.
 6. Tại giao diện **Review ticket-app-stack**:
    * Cuộn xuống cuối trang, tích chọn **I acknowledge that AWS CloudFormation might create IAM resources with custom names.** (Xác nhận cấp quyền cho CloudFormation tạo các IAM Roles).
    * Click **Submit** để bắt đầu triển khai.
 
-![Review Capabilities](/images/5-Workshop/5.2-Prerequiste/cf_capabilities.png)
-
 7. Quá trình triển khai sẽ mất khoảng **15 - 20 phút** để khởi tạo toàn bộ tài nguyên (đặc biệt là RDS Multi-AZ, CloudFront CDN và Beanstalk Environments). Hãy đợi cho đến khi trạng thái chuyển sang **CREATE_COMPLETE**.
-
-![CloudFormation CREATE_COMPLETE](/images/5-Workshop/5.2-Prerequiste/cf_complete.png)
 
 Sau khi CloudFormation Stack triển khai thành công, hạ tầng cơ bản của bạn đã hoàn thành! Ở các chương tiếp theo, nếu đi theo **Lựa chọn A**, bạn chỉ cần đi qua các dịch vụ để **xác minh và kiểm tra** cấu hình, sau đó tiến hành các bước deploy source code.

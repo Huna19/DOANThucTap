@@ -32,22 +32,31 @@ Thực hiện xóa các tài nguyên theo trình tự từ trên xuống dưới
    * Thực hiện tương tự để Terminate môi trường ```ticket-app-Worker-env```.
    * Chờ cho đến khi quá trình hủy môi trường hoàn tất, sau đó xóa Application: Quay lại trang **Applications** -> chọn ```ticket-app-App``` -> click **Actions** -> **Delete application**.
 
-2. **Xóa RDS Proxy & RDS PostgreSQL**:
+2. **Xóa API Gateway**:
+   * Mở [API Gateway console](https://us-east-1.console.aws.amazon.com/apigateway/main/apis?region=us-east-1).
+   * Chọn HTTP API của bạn (ví dụ: `TicketAppAPI`) -> click **Delete** -> Xác nhận xóa.
+
+3. **Xóa CloudFront Distribution**:
+   * Mở [CloudFront console](https://us-east-1.console.aws.amazon.com/cloudfront/v3/home?region=us-east-1#/distributions).
+   * Chọn Distribution của bạn -> click **Disable**. Quá trình này sẽ mất vài phút.
+   * Sau khi trạng thái chuyển sang Disabled, chọn lại Distribution -> click **Delete**.
+
+4. **Xóa RDS Proxy & RDS PostgreSQL**:
    * Mở [Amazon RDS console](https://us-east-1.console.aws.amazon.com/rds/home?region=us-east-1#databases:).
    * Chọn **Proxies** -> Chọn ```rds-proxy-ticket-app``` -> click **Actions** -> **Delete**.
    * Chọn **Databases** -> Chọn Database instance ```database-ticket-app``` -> click **Actions** -> **Delete**:
      * Chọn **No** ở mục tạo final snapshot (để xóa nhanh không cần sao lưu).
      * Tích chọn xác nhận và nhập ```delete me``` để đồng ý xóa.
 
-3. **Xóa ElastiCache Redis replication group**:
+5. **Xóa ElastiCache Redis replication group**:
    * Mở [ElastiCache console](https://us-east-1.console.aws.amazon.com/elasticache/home?region=us-east-1#/clusters).
    * Chọn cụm Redis ```ticket-app-redis``` -> click **Actions** -> **Delete**.
 
-4. **Xóa Cognito User Pool**:
+6. **Xóa Cognito User Pool**:
    * Mở [Amazon Cognito console](https://us-east-1.console.aws.amazon.com/cognito/v2/home?region=us-east-1#).
    * Chọn User Pool ```ticket-app-user-pool``` -> click **Delete user pool**.
 
-5. **Xóa AWS CodePipeline, CodeBuild & CodeCommit**:
+7. **Xóa AWS CodePipeline, CodeBuild & CodeCommit**:
    * Mở **CodePipeline console**:
      * Chọn các pipeline ```ticket-app-backend-pipeline``` và ```ticket-app-worker-pipeline``` -> click **Delete**.
    * Mở **CodeBuild console**:
@@ -55,17 +64,31 @@ Thực hiện xóa các tài nguyên theo trình tự từ trên xuống dưới
    * Mở **CodeCommit console**:
      * Chọn các repository ```ticket-app-backend``` và ```ticket-app-worker``` -> click **Delete**.
 
-6. **Xóa Amazon SQS & SNS**:
-   * Mở [Amazon SQS console](https://us-east-1.console.aws.amazon.com/sqs/v2/home?region=us-east-1#/queues).
-   * Chọn `booking-queue.fifo` và `checkout-dlq.fifo` -> click **Delete**.
-   * Mở [Amazon SNS console](https://us-east-1.console.aws.amazon.com/sns/v3/home?region=us-east-1#/topics) -> Chọn các Topic -> click **Delete**.
+8. **Xóa Amazon SQS, SNS & CloudWatch Alarm**:
+   * Mở **CloudWatch console** -> **Alarms**: Chọn Alarm `ticket-app-checkout-dlq-alarm` -> click **Delete**.
+   * Mở **Amazon SQS console**: Chọn `booking-queue.fifo` và `checkout-dlq.fifo` -> click **Delete**.
+   * Mở **Amazon SNS console**: Chọn các Topic (`booking-notification-topic` và `booking-notification-topic-for-user`) -> click **Delete**.
 
-7. **Xóa S3 Buckets**:
-   * Mở [Amazon S3 console](https://s3.console.aws.amazon.com/s3/home?region=us-east-1#).
-   * Bạn phải **Empty** (xóa sạch file) trong bucket trước khi có thể xóa bucket:
-     * Chọn Frontend Bucket ```frontend-ticket-app-app-<your-account-id>``` -> click **Empty** -> nhập `permanently delete` để xác nhận.
-     * Thực hiện tương tự với Assets Bucket ```ticket-app-assets-<your-account-id>```.
-     * Sau khi empty xong, chọn các Bucket -> click **Delete** -> nhập tên bucket để xác nhận xóa hẳn.
+9. **Xóa SES Identity & SMTP Credentials**:
+   * Mở **Amazon SES console**: Chọn **Identities** -> Chọn Email của bạn -> click **Delete**.
+   * Mở **IAM console**: Chọn **Users** -> Chọn User `ticket-app-smtp-user` -> click **Delete**.
+
+10. **Xóa Secrets Manager**:
+    * Mở [Secrets Manager console](https://us-east-1.console.aws.amazon.com/secretsmanager/home?region=us-east-1#!/listSecrets).
+    * Chọn secret của bạn (chứa mật khẩu DB) -> click **Actions** -> **Delete secret**. (Nhập số ngày chờ là 7 ngày).
+
+11. **Xóa S3 Buckets**:
+    * Mở [Amazon S3 console](https://s3.console.aws.amazon.com/s3/home?region=us-east-1#).
+    * Bạn phải **Empty** (xóa sạch file) trong bucket trước khi có thể xóa bucket:
+      * Chọn Frontend Bucket ```frontend-ticket-app-app-<your-account-id>``` -> click **Empty** -> nhập `permanently delete` để xác nhận.
+      * Thực hiện tương tự với Assets Bucket ```ticket-app-assets-<your-account-id>```.
+      * Sau khi empty xong, chọn các Bucket -> click **Delete** -> nhập tên bucket để xác nhận xóa hẳn.
+
+12. **Xóa Hạ tầng Mạng (VPC, NAT, IGW, SGs)**:
+    * Mở [VPC console](https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1).
+    * **NAT Gateways**: Xóa 2 NAT Gateways. (Quá trình xóa sẽ mất vài phút).
+    * **Elastic IPs**: Release 2 EIPs đã liên kết với NAT.
+    * **VPC**: Chọn VPC `ticket-app-vpc` -> click **Actions** -> **Delete VPC**. Tính năng này sẽ tự động xóa các Subnets, Route Tables, Internet Gateway và Security Groups đi kèm (nếu không còn tài nguyên nào phụ thuộc). Hãy đảm bảo tất cả các tài nguyên ở trên (EC2, RDS, ElastiCache, Beanstalk, ELB) đã được xóa hoàn toàn trước khi thực hiện bước này.
 
 ---
 
@@ -77,7 +100,5 @@ Nếu bạn deploy toàn bộ hạ tầng thông qua file template CloudFormatio
 2. Chọn Stack của bạn (ví dụ: `ticket-app-stack`).
 3. Click **Delete** ở thanh công cụ phía trên.
 4. Xác nhận **Delete stack**.
-
-   ![CloudFormation Delete](/images/5-Workshop/5.9-Cleanup/cf_delete.png)
 
 5. Hệ thống sẽ tự động giải phóng toàn bộ tài nguyên mạng và máy chủ (VPC, Subnets, NAT Gateways, Beanstalk, RDS, Redis, S3, Cognito...) một cách an toàn và sạch sẽ mà không cần phải thực hiện dọn dẹp thủ công từng bước.

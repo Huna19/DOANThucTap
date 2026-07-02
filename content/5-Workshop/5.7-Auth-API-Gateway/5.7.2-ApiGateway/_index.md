@@ -30,7 +30,7 @@ We use **AWS API Gateway** (HTTP API) to secure API endpoints via a **Cognito JW
 
 6. Click **Review and create** -> Click **Create**.
 
-7. Once the API is created, copy the **Invoke URL** displayed on the screen to configure your Frontend `REACT_APP_API_URL`.
+7. Once the API is created, copy the **Invoke URL** displayed on the screen to configure your Frontend `NEXT_PUBLIC_API_URL`.
 
 ![Create HTTP API](/images/5-Workshop/5.7-Auth-API-Gateway/api_integration.png)
 

@@ -37,8 +37,6 @@ Cognito manages user registration, logins, and issues JWT Access Tokens for the 
 
 5. Click the **Create user directory** button at the bottom. (Cognito will automatically generate a User Pool with its corresponding App Client).
 
-![Cognito User Pool created](/images/5-Workshop/5.7-Auth-API-Gateway/cognito_userpool.png)
-
 ![Cognito Create User Directory](/images/5-Workshop/5.7-Auth-API-Gateway/cognito_create_directory.png)
 
 6. From the created User Pool's detail page, copy the following 2 parameters to configure API Gateway and Frontend in the next chapter:

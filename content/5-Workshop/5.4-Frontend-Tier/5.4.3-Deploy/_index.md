@@ -19,9 +19,10 @@ Before uploading the Frontend code to S3, we need to configure the Frontend to c
 1. Navigate to the Frontend source code directory on your computer (the ```ticket-booking-frontend``` directory).
 2. Create or edit the environment configuration file ```.env``` in the Frontend directory:
    ```env
-   REACT_APP_API_URL=https://ticket-app-api-url (API Gateway URL - see Chapter 5.7)
-   REACT_APP_COGNITO_USER_POOL_ID=us-east-1_xxxxx (See Chapter 5.7)
-   REACT_APP_COGNITO_CLIENT_ID=xxxxxxxxxxxx (See Chapter 5.7)
+   NEXT_PUBLIC_API_URL=https://ticket-app-api-url (API Gateway URL - see Chapter 5.7)
+   NEXT_PUBLIC_COGNITO_USER_POOL_ID=us-east-1_xxxxx (See Chapter 5.7)
+   NEXT_PUBLIC_COGNITO_CLIENT_ID=xxxxxxxxxxxx (See Chapter 5.7)
+   NEXT_PUBLIC_COGNITO_REGION=us-east-1
    ```
 3. Open a Terminal in the Frontend directory and run the following commands to install dependencies and build the project:
    ```bash

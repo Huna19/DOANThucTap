@@ -19,9 +19,10 @@ Trước khi upload code Frontend lên S3, chúng ta cần cấu hình để Fro
 1. Đi vào thư mục mã nguồn Frontend trên máy tính của bạn (thư mục ```ticket-booking-frontend```).
 2. Tạo hoặc chỉnh sửa file cấu hình môi trường ```.env``` trong thư mục Frontend:
    ```env
-   REACT_APP_API_URL=https://ticket-app-api-url (Địa chỉ URL của API Gateway - xem ở chương 5.7)
-   REACT_APP_COGNITO_USER_POOL_ID=us-east-1_xxxxx (Xem ở chương 5.7)
-   REACT_APP_COGNITO_CLIENT_ID=xxxxxxxxxxxx (Xem ở chương 5.7)
+   NEXT_PUBLIC_API_URL=https://ticket-app-api-url (Địa chỉ URL của API Gateway - xem ở chương 5.7)
+   NEXT_PUBLIC_COGNITO_USER_POOL_ID=us-east-1_xxxxx (Xem ở chương 5.7)
+   NEXT_PUBLIC_COGNITO_CLIENT_ID=xxxxxxxxxxxx (Xem ở chương 5.7)
+   NEXT_PUBLIC_COGNITO_REGION=us-east-1
    ```
 3. Mở Terminal tại thư mục Frontend, chạy các lệnh sau để cài đặt thư viện và build dự án:
    ```bash

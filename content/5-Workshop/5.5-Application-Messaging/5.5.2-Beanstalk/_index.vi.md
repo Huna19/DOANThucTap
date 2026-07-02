@@ -195,6 +195,7 @@ Lưu ý quan trọng: Beanstalk Worker Environment trong dự án này thực ch
      * ```DB_NAME```: ```ticketing_db```
      * ```DB_USER```: ```postgres```
      * ```DB_PASSWORD```: ```TicketingAppPassword2026!```
+     * ```DATABASE_URL```: ```postgresql://postgres:TicketingAppPassword2026!@<rds-proxy-endpoint>:5432/ticketing_db``` *(Thay `<rds-proxy-endpoint>` bằng Proxy endpoint của RDS Proxy)*
      * ```REDIS_HOST```: *(Nhập Primary endpoint của Redis - xem chương 5.6)*
      * ```REDIS_PORT```: ```6379```
      * ```SQS_BOOKING_QUEUE_URL```: ```https://sqs.us-east-1.amazonaws.com/<your-account-id>/booking-queue.fifo```

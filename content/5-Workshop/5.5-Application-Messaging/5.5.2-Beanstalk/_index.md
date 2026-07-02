@@ -19,6 +19,9 @@ Elastic Beanstalk requires an IAM Role (Instance Profile) to grant EC2 instances
 1. Open the **IAM Console** -> select **Roles** -> click **Create role**.
 2. Select **Trusted entity type**: **AWS service**.
 3. Select **Use case**: **EC2** -> click **Next**.
+
+   ![EB IAM Trusted Entity](/images/5-Workshop/5.5-Application-Messaging/eb_iam_trusted_entity.png)
+
 4. Find and check the following **Managed Policies**:
    * `AWSElasticBeanstalkWebTier`
    * `AWSElasticBeanstalkWorkerTier`
@@ -26,8 +29,11 @@ Elastic Beanstalk requires an IAM Role (Instance Profile) to grant EC2 instances
 5. Click **Next** -> Enter **Role name**: `ticket-app-beanstalk-ec2-role`.
 6. Click **Create role**.
 
-![EB IAM Role](/images/5-Workshop/5.5-Application-Messaging/eb_iam_role.png)
+   ![IAM Create Role](/images/5-Workshop/5.5-Application-Messaging/iam_create_role_btn.png)
+
 7. Open the newly created `ticket-app-beanstalk-ec2-role`, select the **Permissions** tab -> click **Add permissions** -> **Create inline policy**.
+
+   ![EB IAM Add Inline Policy](/images/5-Workshop/5.5-Application-Messaging/eb_iam_add_inline_policy.png)
 8. Instead of manually searching and adding each service, you can copy the standard JSON Policy below (extracted from the project's Infrastructure as Code template) and paste it into the **JSON** tab:
 
 ```json
@@ -184,6 +190,7 @@ Configure environment properties directly on the Beanstalk Console:
      * ```DB_NAME```: ```ticketing_db```
      * ```DB_USER```: ```postgres```
      * ```DB_PASSWORD```: ```TicketingAppPassword2026!```
+     * ```DATABASE_URL```: ```postgresql://postgres:TicketingAppPassword2026!@<rds-proxy-endpoint>:5432/ticketing_db``` *(Replace `<rds-proxy-endpoint>` with your actual RDS Proxy endpoint)*
      * ```REDIS_HOST```: *(Enter Redis Primary endpoint)*
      * ```REDIS_PORT```: ```6379```
      * ```SQS_BOOKING_QUEUE_URL```: ```https://sqs.us-east-1.amazonaws.com/<your-account-id>/booking-queue.fifo```

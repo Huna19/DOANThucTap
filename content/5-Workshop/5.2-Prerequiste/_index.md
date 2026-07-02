@@ -312,7 +312,7 @@ cd ticket-app-workshop
 In this workshop, you can choose one of the following two methods to build your network and server infrastructure:
 
 *   **Option A (Recommended - Fast): Automate deployment using AWS CloudFormation**
-    *   The infrastructure will be automatically initialized in about 15-20 minutes.
+    *   The infrastructure will be automatically initialized.
     *   Chapters **5.3 to 5.7** will serve as guides for you to **Verify and Validate** the created resources rather than recreating them.
 *   **Option B: Manually configure step-by-step (Manual)**
     *   You will **skip** Step 4 (running CloudFormation) below.
@@ -322,29 +322,21 @@ In this workshop, you can choose one of the following two methods to build your 
 
 #### Instructions for Option A: Automatic Deployment using CloudFormation
 
-The entire core infrastructure of the application (VPC, RDS, Redis, Beanstalk, SQS, Cognito, API Gateway, CloudFront, CI/CD Pipeline) will be deployed automatically using the CloudFormation template file ```template.yaml```.
+To prepare the environment for the workshop, we deploy the following CloudFormation template (click link): [TicketAppStack](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=ticket-app-stack&templateURL=https://fcaj-ticketing-templates.s3.amazonaws.com/template-cloudformation.yaml). Leave all default options.
 
-1. Open the [AWS CloudFormation console](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks).
-2. Click **Create stack** -> select **With new resources (standard)**.
-3. In the **Prerequisite - Prepare template** interface, select **Template is ready**:
-   * **Template source**: Select **Upload a template file**.
-   * Click **Choose file** and upload the ```template.yaml``` file from your project directory.
-   * Click **Next**.
+{{% notice info %}}
+**Note on Deployment Scope**: 
+If you choose automatic deployment via CloudFormation, the system will automatically initialize the basic resources. You can **skip the manual creation steps** and only read the instructions to **Verify/Check** configurations for the following parts:
+*   **Chapter 5.3 (Network & Security)**: Completely (VPC, Subnets, NAT, Security Groups).
+*   **Chapter 5.4 (Frontend Tier)**: S3 Bucket creation step (you **still need to manually configure** CloudFront CDN + WAF).
+*   **Chapter 5.5 (Application & Messaging Tier)**: Completely (Elastic Beanstalk Backend/Worker and SQS).
+*   **Chapter 5.6 (Database & Caching)**: Secrets Manager configuration step (you **still need to manually create** RDS Database, RDS Proxy, and ElastiCache Redis).
+*   **Chapter 5.7 (Auth & API Gateway)**: Cognito User Pool creation step (you **still need to manually create** API Gateway).
+{{% /notice %}}
 
-4. In the **Specify stack details** interface:
-   * **Stack name**: Enter ```ticket-app-stack```.
-   * **Parameters**:
-     * **EnvironmentName**: Enter ```ticket-app```.
-     * **DBMasterUsername**: ```postgres```.
-     * **DBName**: ```ticketing_db``` (Be sure to use this Database name consistently throughout the lab).
-     * Keep the other default parameters.
-   * Click **Next**.
-
-5. In the **Configure stack options** interface, keep the default configuration and click **Next**.
-6. In the **Review ticket-app-stack** interface:
-   * Scroll to the bottom of the page, check **I acknowledge that AWS CloudFormation might create IAM resources with custom names.** (Confirm granting CloudFormation permission to create IAM Roles).
-   * Click **Submit** to start deployment.
-
-7. The deployment process will take approximately **15 - 20 minutes** to initialize all resources (especially RDS Multi-AZ, CloudFront CDN, and Beanstalk Environments). Wait until the status changes to **CREATE_COMPLETE**.
+1. The browser will open the CloudFormation Console with the configuration pre-filled.
+2. On the **Specify stack details** screen, verify the parameters and click **Next**.
+3. Scroll to the bottom of the Review page, check **I acknowledge that AWS CloudFormation might create IAM resources with custom names.** and click **Submit** to start deployment.
+4. Wait for the deployment process to complete (Status changes to `CREATE_COMPLETE`).
 
 After the CloudFormation Stack deploys successfully, your basic infrastructure is complete! In the following chapters, if you choose **Option A**, you only need to navigate through the services to **verify and check** configurations, then proceed to the source code deployment steps.

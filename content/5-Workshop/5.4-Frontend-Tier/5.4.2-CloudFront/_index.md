@@ -42,14 +42,13 @@ Note: The S3 Bucket must be a regular bucket (REST endpoint), and Static Website
 
    ![CloudFront Origin Settings](/images/5-Workshop/5.4-Frontend-Tier/cf_origin_settings.jpg)
 
-   * **Security protections**:
-     * **AWS WAF**: Keep the default configuration and click **Next**.
+   * **Web Application Firewall (WAF)** (under **Security protections**):
+     * Select **Enable security protections** to activate AWS WAF protection (AWS will automatically configure a basic Web ACL to protect against common web threats and rate limit requests). Click **Next**.
 
    ![CloudFront Security Settings](/images/5-Workshop/5.4-Frontend-Tier/cf_waf_settings.jpg)
-
-   {{% notice note %}}
-   Note: Since **Project type = Single website or app** has been selected, AWS will automatically apply the appropriate default configuration for the CloudFront Distribution. For this workshop, just keep the default values and click **Next** to continue. Settings such as Cache Behavior, Viewer Protocol Policy, or Allowed HTTP Methods can be edited later if needed.
-   {{% /notice %}}
+{{% notice note %}}
+Note: Since **Project type = Single website or app** has been selected, AWS will automatically apply the appropriate default configuration for the CloudFront Distribution. For this workshop, just keep the default values and click **Next** to continue. Settings such as Cache Behavior, Viewer Protocol Policy, or Allowed HTTP Methods can be edited later if needed.
+{{% /notice %}}
 
 4. Click **Create distribution** at the bottom.
 

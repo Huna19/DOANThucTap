@@ -312,7 +312,7 @@ cd ticket-app-workshop
 Trong workshop này, bạn có thể lựa chọn 1 trong 2 phương thức sau để xây dựng cơ sở hạ tầng mạng và máy chủ:
 
 *   **Lựa chọn A (Khuyên dùng - Nhanh chóng): Triển khai tự động bằng AWS CloudFormation**
-    *   Hạ tầng sẽ được khởi tạo hoàn toàn tự động chỉ sau 15-20 phút.
+    *   Hạ tầng sẽ được khởi tạo hoàn toàn tự động.
     *   Các chương từ **5.3 đến 5.7** sẽ đóng vai trò là hướng dẫn để bạn **Kiểm tra và Xác thực** cấu hình tài nguyên đã được tạo thay vì phải tự tạo lại.
 *   **Lựa chọn B: Tự tay cấu hình thủ công từng bước (Manual)**
     *   Bạn sẽ **bỏ qua** bước 4 (chạy CloudFormation) dưới đây.
@@ -322,29 +322,21 @@ Trong workshop này, bạn có thể lựa chọn 1 trong 2 phương thức sau 
 
 #### Hướng dẫn cho Lựa chọn A: Triển khai tự động bằng CloudFormation
 
-Toàn bộ hạ tầng cốt lõi của ứng dụng (VPC, RDS, Redis, Beanstalk, SQS, Cognito, API Gateway, CloudFront, CI/CD Pipeline) sẽ được triển khai tự động thông qua file CloudFormation template ```template.yaml```.
+Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [TicketAppStack](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=ticket-app-stack&templateURL=https://fcaj-ticketing-templates.s3.amazonaws.com/template-cloudformation.yaml). Để nguyên các lựa chọn mặc định.
 
-1. Mở [AWS CloudFormation console](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks).
-2. Click **Create stack** -> chọn **With new resources (standard)**.
-3. Tại giao diện **Prerequisite - Prepare template**, chọn **Template is ready**:
-   * **Template source**: Chọn **Upload a template file**.
-   * Click **Choose file** và tải lên tệp tin ```template.yaml``` trong thư mục dự án của bạn.
-   * Click **Next**.
+{{% notice info %}}
+**Lưu ý về phạm vi triển khai**: 
+Nếu chọn triển khai tự động bằng CloudFormation, hệ thống sẽ tự khởi tạo sẵn các tài nguyên cơ bản. Bạn có thể **bỏ qua bước tạo thủ công** và chỉ cần đọc hướng dẫn để **Kiểm tra/Xác minh** cấu hình đối với các phần sau:
+*   **Chương 5.3 (Mạng & Bảo mật)**: Toàn bộ (VPC, Subnet, NAT, Security Groups).
+*   **Chương 5.4 (Tầng Frontend)**: Bước tạo S3 Bucket (bạn **vẫn phải tự làm** bước cấu hình CloudFront CDN + WAF).
+*   **Chương 5.5 (Tầng Application & Messaging)**: Toàn bộ (Elastic Beanstalk Backend/Worker và SQS).
+*   **Chương 5.6 (Database & Caching)**: Bước cấu hình Secrets Manager (bạn **vẫn phải tự làm** bước tạo RDS Database, RDS Proxy và ElastiCache Redis).
+*   **Chương 5.7 (Auth & API Gateway)**: Bước tạo Cognito User Pool (bạn **vẫn phải tự làm** bước tạo API Gateway).
+{{% /notice %}}
 
-4. Tại giao diện **Specify stack details**:
-   * **Stack name**: Nhập ```ticket-app-stack```.
-   * **Parameters**:
-     * **EnvironmentName**: Nhập ```ticket-app```.
-     * **DBMasterUsername**: ```postgres```.
-     * **DBName**: ```ticketing_db``` (Lưu ý sử dụng đồng bộ tên Database này xuyên suốt bài lab).
-     * Giữ nguyên các tham số mặc định khác.
-   * Click **Next**.
-
-5. Tại giao diện **Configure stack options**, giữ nguyên cấu hình mặc định và click **Next**.
-6. Tại giao diện **Review ticket-app-stack**:
-   * Cuộn xuống cuối trang, tích chọn **I acknowledge that AWS CloudFormation might create IAM resources with custom names.** (Xác nhận cấp quyền cho CloudFormation tạo các IAM Roles).
-   * Click **Submit** để bắt đầu triển khai.
-
-7. Quá trình triển khai sẽ mất khoảng **15 - 20 phút** để khởi tạo toàn bộ tài nguyên (đặc biệt là RDS Multi-AZ, CloudFront CDN và Beanstalk Environments). Hãy đợi cho đến khi trạng thái chuyển sang **CREATE_COMPLETE**.
+1. Trình duyệt sẽ mở bảng điều khiển CloudFormation Console và tự động điền sẵn các cấu hình.
+2. Tại màn hình **Specify stack details**, kiểm tra các tham số rồi click **Next**.
+3. Cuộn xuống cuối trang Review, tích chọn **I acknowledge that AWS CloudFormation might create IAM resources with custom names.** và click **Submit** để bắt đầu triển khai.
+4. Đợi cho đến khi quá trình khởi tạo hoàn tất (Trạng thái chuyển sang `CREATE_COMPLETE`).
 
 Sau khi CloudFormation Stack triển khai thành công, hạ tầng cơ bản của bạn đã hoàn thành! Ở các chương tiếp theo, nếu đi theo **Lựa chọn A**, bạn chỉ cần đi qua các dịch vụ để **xác minh và kiểm tra** cấu hình, sau đó tiến hành các bước deploy source code.

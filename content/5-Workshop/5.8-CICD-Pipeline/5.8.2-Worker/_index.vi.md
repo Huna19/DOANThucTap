@@ -84,6 +84,7 @@ Chúng ta sẽ thiết lập luồng tích hợp và triển khai tự động c
 
 4. **Push code Worker lên CodeCommit**:
    * Mở Terminal tại thư mục Worker ```ticket-booking-worker``` của bạn.
+   * **Lưu ý**: Hãy chắc chắn **xóa thư mục ẩn `.git` cũ** (nếu có) trong thư mục này để tránh lỗi xung đột Remote khi chạy `git init`.
    * Khởi tạo Git và thực hiện push code:
      ```bash
      git init

@@ -12,14 +12,11 @@ We will set up an integration and deployment automation pipeline for the **Backe
 
 ---
 
-#### 1. Initialize Git Credentials for IAM User
+#### 1. Initialize HTTPS Git Credentials for IAM User
 
-Before interacting with CodeCommit, initialize your HTTPS Git credentials or security keys for your IAM User:
+Before interacting with CodeCommit, you need to initialize HTTPS Git credentials or security keys for your IAM User:
 
 1. Open the [AWS IAM console](https://us-east-1.console.aws.amazon.com/iam/home#/users).
-   
-   ![IAM Search](/images/5-Workshop/5.8-CICD-Pipeline/iam_search.png)
-
 2. Click your IAM User -> Select the **Security credentials** tab.
    
    ![IAM Security Credentials Access Key](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_access_key.png)
@@ -28,11 +25,11 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials or sec
    
    ![IAM Generate API Key](/images/5-Workshop/5.8-CICD-Pipeline/iam_generate_api_key.png)
 
-4. In the **Generate API key** window, select **AWS CodeCommit** for the Service and click **Generate API key**.
+4. In the **Generate API key** window, select Service as **AWS CodeCommit** and click **Generate API key**.
    
    ![IAM Security Credentials API Keys](/images/5-Workshop/5.8-CICD-Pipeline/iam_user_api_keys.png)
 
-5. Download the CSV containing the **Username** and **Password** (or API key info) and store it securely.
+5. Download the CSV containing the **Username** and **Password** (or API key info) to your computer and store it securely.
 
 ---
 
@@ -40,21 +37,24 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials or sec
 
 1. Open the [AWS CodeCommit console](https://us-east-1.console.aws.amazon.com/codesuite/codecommit/repositories?region=us-east-1) -> Click **Create repository**.
 
-![CodeCommit Repositories](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_repo_btn.png)
+   ![CodeCommit Repositories](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_repo_btn.png)
 
    * **Repository name**: Enter ```ticket-app-backend``` -> click **Create**.
 
-![Create CodeCommit Repository](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_repo_create.png)
+     ![Create CodeCommit Repository](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_repo_create.png)
 
 2. Open the [AWS CodeBuild console](https://us-east-1.console.aws.amazon.com/codesuite/codebuild/projects?region=us-east-1) -> Click **Create project**:
+
+   ![CodeBuild Create Project](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_create.png)
+
    * **Project name**: ```ticket-app-backend-build```.
    * **Source**: Provider: **AWS CodeCommit** | Repository: ```ticket-app-backend``` | Branch: ```main```.
 
-![CodeBuild Backend Source](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_source.png)
+     ![CodeBuild Backend Source](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_source.png)
 
    * **Environment**: Operating system: **Amazon Linux** | Runtime: **Standard** | Image: Select latest version (`aws/codebuild/amazonlinux-x86_64-standard:6.0`).
 
-![CodeBuild Backend Environment](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_env.png)
+     ![CodeBuild Backend Environment](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_worker_env.png)
 
    * **Buildspec**: Select **Insert build commands** -> Switch to editor and enter:
      ```yaml
@@ -74,33 +74,35 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials or sec
          - '**/*'
      ```
 
-![CodeBuild Backend Buildspec](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_buildspec.png)
+     ![CodeBuild Backend Buildspec](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_buildspec.png)
 
    * **Logs**: Select CloudWatch logs.
 
-![CodeBuild Backend Logs](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_logs.png)
+     ![CodeBuild Backend Logs](/images/5-Workshop/5.8-CICD-Pipeline/codebuild_backend_logs.png)
 
    * Click **Create build project**.
 
 3. Open the [AWS CodePipeline console](https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=us-east-1) -> click **Create pipeline**:
    * **Pipeline name**: ```ticket-app-backend-pipeline``` -> click **Next**.
 
-![CodePipeline Backend Settings](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_settings.png)
+     ![CodePipeline Backend Settings](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_settings.png)
 
    * **Source stage**: Source: **AWS CodeCommit** | Repository: ```ticket-app-backend``` | Branch: ```main``` -> click **Next**.
 
-![CodePipeline Backend Source Stage](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_source.png)
+     ![CodePipeline Backend Source Stage](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_source.png)
 
    * **Build stage**: Build provider: **AWS CodeBuild** | Project name: ```ticket-app-backend-build``` -> click **Next**.
 
-![CodePipeline Backend Build Stage Network](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_network.png)
+     ![CodePipeline Backend Build Stage](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_build_stage.png)
+     ![CodePipeline Backend Build Stage Bottom](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_build_stage_bottom.png)
 
    * **Deploy stage**: Deploy provider: **AWS Elastic Beanstalk** | Application: ```ticket-app-App``` | Environment: ```ticket-app-Backend-env``` -> click **Next** -> **Create pipeline**.
 
-![CodePipeline Backend Deploy Stage](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_deploy.png)
+     ![CodePipeline Backend Deploy Stage](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_deploy.png)
 
 4. Push Backend code to CodeCommit:
-   * Open a Terminal in your Backend directory ```ticket-booking-backend```.
+   * Open a Terminal in your Backend directory ```ticket-booking-backend-web```.
+   * **Note**: Make sure to **delete the old hidden `.git` folder** (if exists) in this directory to avoid Remote configuration conflicts when running git init.
    * Initialize Git and push:
      ```bash
      git init
@@ -110,9 +112,9 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials or sec
      git commit -m "Initial commit Backend API Server"
      git push -u origin main
      ```
-     * *Enter the Username and Password downloaded in step 1 when prompted.*
+     * *Enter the Username and Password Git CodeCommit downloaded in step 1 when prompted.*
 
-![Clone CodeCommit Repository](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_clone.png)
+   ![Clone CodeCommit Repository](/images/5-Workshop/5.8-CICD-Pipeline/codecommit_clone.png)
 
 ---
 
@@ -122,7 +124,9 @@ Before interacting with CodeCommit, initialize your HTTPS Git credentials or sec
 2. Confirm the ```ticket-app-backend-pipeline``` triggers into **In Progress** state right after pushing.
 3. Wait until all stages (Source -> Build -> Deploy) show **Succeeded** (green).
 
-![Backend Pipeline Succeeded](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend.png)
-![Backend Pipeline List](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_list.png)
+   ![Backend Pipeline Succeeded](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend.png)
+   ![Backend Pipeline List](/images/5-Workshop/5.8-CICD-Pipeline/pipeline_backend_list.png)
 
-4. In the Elastic Beanstalk console, verify the health status of ```ticket-app-Backend-env``` shifts to **Ok** (green).
+4. In the Elastic Beanstalk console, verify the health status of ```ticket-app-Backend-env``` shifts to **Ok** (green) with the application version built from CodeCommit.
+
+   ![EB Backend Deployment Success](/images/5-Workshop/5.8-CICD-Pipeline/eb_backend_deployment_success.png)

@@ -42,14 +42,13 @@ Lưu ý: Bucket S3 phải là bucket thông thường (REST endpoint), **không 
 
    ![CloudFront Origin Settings](/images/5-Workshop/5.4-Frontend-Tier/cf_origin_settings.jpg)
 
-   * **Security protections**:
-     * **AWS WAF**: Giữ nguyên cấu hình mặc định và click **Next**.
+   * **Web Application Firewall (WAF)** (trong phần **Security protections**):
+     * Chọn **Enable security protections** để kích hoạt bảo vệ bằng AWS WAF (AWS sẽ tự động cấu hình một Web ACL cơ bản giúp chống lại các cuộc tấn công web phổ biến và giới hạn tần suất truy cập). Click **Next**.
 
    ![CloudFront Security Settings](/images/5-Workshop/5.4-Frontend-Tier/cf_waf_settings.jpg)
-
-   {{% notice note %}}
-   Lưu ý: Do đã chọn **Project type = Single website or app**, AWS sẽ tự động áp dụng cấu hình mặc định phù hợp cho CloudFront Distribution. Đối với workshop này, chỉ cần giữ nguyên các giá trị mặc định và nhấn **Next** để tiếp tục. Các thiết lập như Cache Behavior, Viewer Protocol Policy hoặc Allowed HTTP Methods có thể được chỉnh sửa sau nếu cần.
-   {{% /notice %}}
+{{% notice note %}}
+Lưu ý: Do đã chọn **Project type = Single website or app**, AWS sẽ tự động áp dụng cấu hình mặc định phù hợp cho CloudFront Distribution. Đối với workshop này, chỉ cần giữ nguyên các giá trị mặc định và nhấn **Next** để tiếp tục. Các thiết lập như Cache Behavior, Viewer Protocol Policy hoặc Allowed HTTP Methods có thể được chỉnh sửa sau nếu cần.
+{{% /notice %}}
 
 4. Click **Create distribution** ở dưới cùng.
 

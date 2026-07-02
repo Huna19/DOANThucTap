@@ -30,7 +30,7 @@ Chúng ta sử dụng **AWS API Gateway** (HTTP API) làm cổng bảo vệ các
 
 6. Click **Review and create** -> Click **Create**.
 
-7. Sau khi API được tạo, copy địa chỉ **Invoke URL** hiển thị trên màn hình để điền vào cấu hình Frontend `REACT_APP_API_URL`.
+7. Sau khi API được tạo, copy địa chỉ **Invoke URL** hiển thị trên màn hình để điền vào cấu hình Frontend `NEXT_PUBLIC_API_URL`.
 
 ![Create HTTP API](/images/5-Workshop/5.7-Auth-API-Gateway/api_integration.png)
 

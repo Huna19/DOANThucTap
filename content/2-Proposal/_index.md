@@ -17,12 +17,13 @@ pre: " <b> 2. </b> "
 ### 2. Concept & Objectives (Problem Statement)
 
 #### 2.1 Context & Problem
-*   **What is the system used for?** 
-    Ticketing-App is an online event ticketing platform designed to handle high concurrency during "flash sale" events.
-*   **Who is the customer?** 
-    End-users are audiences expecting a smooth ticket-purchasing experience. Business clients (B2B) are event organizers who need a stable, crash-free platform to protect their brand image.
-*   **What problem does it solve?**
-    Traditional ticketing systems often crash or suffer from database connection exhaustion when thousands of users access them simultaneously. Ticketing-App solves this with a decoupled architecture and message queuing, ensuring zero dropped orders.
+*   **System Purpose:**
+    **Ticketing-App** is a dedicated online event ticketing platform designed specifically to handle high concurrency and traffic spikes during time-limited ticket releases ("flash sale" events).
+*   **Target Audience:**
+    The platform serves two primary groups: end-users (ticket buyers) who demand a seamless and lag-free booking experience, and event organizers (B2B clients) who require a highly stable, crash-free system to protect their brand reputation.
+*   **Problem Statement:**
+    Traditional ticketing platforms frequently suffer from server crashes or database connection exhaustion when thousands of users attempt to purchase tickets simultaneously. **Ticketing-App** resolves this bottleneck through a decoupled architecture integrated with message queues, ensuring that no booking requests are dropped or lost.
+
 
 #### 2.2 Specific Goals
 *   **Desired Output:** 

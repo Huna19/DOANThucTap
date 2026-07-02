@@ -17,12 +17,13 @@ pre: " <b> 2. </b> "
 ### 2. Ý tưởng & Mục tiêu (Tuyên bố vấn đề)
 
 #### 2.1 Bối cảnh & Bài toán
-*   **Hệ thống dùng để làm gì?** 
-    Ticketing-App là nền tảng đặt vé sự kiện trực tuyến, đặc biệt thiết kế để xử lý tải cao trong các đợt mở bán vé "flash sale".
-*   **Khách hàng là ai?** 
-    Khách hàng (End-user) là những khán giả cần trải nghiệm mua vé mượt mà. Khách hàng doanh nghiệp (B2B) là các ban tổ chức sự kiện cần một nền tảng ổn định, không sập nguồn để bảo vệ hình ảnh thương hiệu.
-*   **Giải quyết vấn đề gì?**
-    Các hệ thống bán vé truyền thống thường sập máy chủ hoặc cạn kiệt kết nối DB (connection exhaustion) khi có hàng ngàn truy cập đồng thời. Ticketing-App giải quyết bài toán này bằng kiến trúc phân rã kết hợp hàng đợi, đảm bảo không rớt đơn hàng.
+*   **Mục đích hệ thống:**
+    **Ticketing-App** được phát triển như một nền tảng đặt vé sự kiện trực tuyến chuyên dụng, tối ưu hóa đặc biệt cho việc xử lý lượng truy cập cực lớn (high concurrency) phát sinh trong các đợt mở bán vé giới hạn thời gian ("flash sale").
+*   **Đối tượng khách hàng:**
+    Nền tảng hướng đến hai nhóm đối tượng chính: khán giả mua vé (End-users) cần một trải nghiệm đặt chỗ mượt mà, không giật lag; và các đơn vị tổ chức sự kiện (khách hàng B2B) yêu cầu một hệ thống có tính sẵn sàng cao, hoạt động ổn định để bảo vệ uy tín thương hiệu.
+*   **Vấn đề giải quyết:**
+    Các hệ thống bán vé truyền thống thường gặp sự cố sập máy chủ hoặc cạn kiệt kết nối cơ sở dữ liệu (database connection exhaustion) khi hàng ngàn người dùng truy cập cùng lúc. **Ticketing-App** giải quyết triệt để vấn đề này bằng kiến trúc phân rã (decoupled architecture) kết hợp hàng đợi SQS, cam kết không bỏ lỡ hay làm thất lạc bất kỳ đơn hàng nào của khách hàng.
+
 
 #### 2.2 Mục tiêu cụ thể
 *   **Output mong muốn:** 

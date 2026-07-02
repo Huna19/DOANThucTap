@@ -72,7 +72,6 @@ Sự kiện gồm 4 phần trình bày cực kỳ "thực chiến":
 #### Một số hình ảnh khi tham gia sự kiện
 <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start">
   <img src="/images/4-EventParticipated/4.3-Event3/02fd3145e69867c63e892.jpg" style="width:220px;height:auto" />
-  <img src="/images/4-EventParticipated/4.3-Event3/2430b5896254e30aba453.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.3-Event3/50400dfdda205b7e02317.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.3-Event3/7223549d8340021e5b5110.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.3-Event3/8319bea7697ae824b16b8.jpg" style="width:220px;height:auto" />
@@ -80,5 +79,5 @@ Sự kiện gồm 4 phần trình bày cực kỳ "thực chiến":
   <img src="/images/4-EventParticipated/4.3-Event3/af6eaed3790ef850a11f5.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.3-Event3/dba02f1ef8c3799d20d26.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.3-Event3/ed911328c4f545ab1ce49.jpg" style="width:220px;height:auto" />
-  <img src="/images/4-EventParticipated/4.3-Event3/f09d922345fec4a09def4.jpg" style="width:220px;height:auto" />
+  
 </div>

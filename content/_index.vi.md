@@ -17,7 +17,7 @@ chapter: false
 
 &emsp; **Ngành:** Công nghệ thông tin
 
-&emsp; **Lớp:** 22DTHC1
+&emsp; **Lớp:** 22DTHG8
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Vietnam (AWS Vietnam)
 

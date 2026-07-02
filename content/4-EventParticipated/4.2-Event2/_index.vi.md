@@ -101,8 +101,6 @@ Sự kiện mang lại hàm lượng kỹ thuật cực kỳ cao. Nếu Event 1 
   <img src="/images/4-EventParticipated/4.2-Event2/d4174ebf9962183c417311.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.2-Event2/dc4096ed4130c06e992128.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.2-Event2/e4abac027bdffa81a3ce22.jpg" style="width:220px;height:auto" />
-  <img src="/images/4-EventParticipated/4.2-Event2/ecc87061a7bc26e27fad17.jpg" style="width:220px;height:auto" />
-  <img src="/images/4-EventParticipated/4.2-Event2/f1c5b56c62b1e3efbaa018.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.2-Event2/fe4d0ce7db3a5a64032b13.jpg" style="width:220px;height:auto" />
   <img src="/images/4-EventParticipated/4.2-Event2/ff0763a9b474352a6c6525.jpg" style="width:220px;height:auto" />
 </div>

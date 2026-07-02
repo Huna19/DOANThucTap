@@ -8,11 +8,11 @@ chapter: false
 # Internship Report
 
 ### Student Information:
-&emsp; **Full Name:** Nguyen Phuc Thinh
+&emsp; **Full Name:** Dang Tan Hung
 
-&emsp; **Phone Number:** 0365981370 
+&emsp; **Phone Number:** 0393247155 
 
-&emsp; **Email:** thinh270924@gmail.com
+&emsp; **Email:** dangtanhung190804@gmail.com
 
 &emsp; **University:** Ho Chi Minh City University of Technology (HUTECH)
 
@@ -26,7 +26,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 20/04/2026 to 10/07/2026
 
-<img src="/images/avatar.jpg" alt="Your profile picture" width="350" style="border-radius: 8px;" />
+<img src="/images/Capture.PNG" alt="Your profile picture" width="350" style="border-radius: 8px;" />
 
 ### Report Content
 

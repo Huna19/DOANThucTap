@@ -88,7 +88,7 @@ The event included 4 talk segments in order: **Long → Thinh → Khang → Thu*
 The content was practical and easy to relate to—especially the “addicted to learning” section (building sustainable learning drive) and the prompt engineering section (writing effective prompts with cost awareness). The demo clearly showed how prompt optimization impacts output quality.
 
 #### Some event photos
-![Group photo at the event](/images/4-EventParticipated/4.1-Event1/00-group-photo.png)
+![Group photo at the event](/images/4-EventParticipated/4.1-Event1/)
 
 <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start">
   <img src="/images/4-EventParticipated/4.1-Event1/01-long-title.png" style="width:220px;height:auto" />
